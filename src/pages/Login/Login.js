@@ -1,10 +1,10 @@
 import { useState } from 'react'
-// import LoginForm from '../../components/LoginForm/LoginForm'
+import LoginForm from '../../components/LoginForm/LoginForm'
 
-export default function Login({ user, setUser }) {    
+export default function Login({ setUser }) {    
     return (
         <>
-        <h1>Login</h1>
+        <LoginForm setUser={setUser}/>
         </>
       
     )

@@ -5,20 +5,18 @@ import { useState, useEffect } from 'react';
 import { getUser } from '../utilities/users-service';
 import Home from '../pages/Home/Home'
 
-// Components import statements (Home, NewClip, NewOrder, OrderHistory, Settings, Login, SignUp) should be here
-
 const AppRouter = () => {
     const [user, setUser] = useState(getUser())
     return (
         <Router>
             <main>
                 <Routes>
-                    <Route path="/" element={<Home user={user} setUser={setUser} />} />                    
+                    <Route path="/" key='Home' element={<Home page='Home' user={user} setUser={setUser} />} />                    
                     {routes.map(({ Component, key, path, gated }) => {
                         if (gated === !!user) {
                             return <Route key={key} path={path} element={<Component page={key} user={user} setUser={setUser} />} />
                         } else {
-                            return <Route path={path} element={<Navigate replace to="/" />} />
+                            return <Route key={key} path={path} element={<Navigate replace to="/" />} />
                         }
                     })}
                 </Routes>
