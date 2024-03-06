@@ -18,8 +18,8 @@ const AppRouter = () => {
 						element={
 						<Component 
 							page={key} 
-							user={user}
-							setUser={setUser}
+							// user={user}
+							// setUser={setUser}
 						/>
 						}>
                     </Route>
@@ -30,3 +30,5 @@ const AppRouter = () => {
         </Router>
     )
 }
+
+export default AppRouter

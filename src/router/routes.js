@@ -1,10 +1,10 @@
-import Home from '/..pages/Home/Home'
-import Login from '/..pages/Login/Login'
-import NewClip from '/..pages/NewClip/NewClip'
-import NewOrder from '/..pages/NewOrder/NewOrder'
-import OrderHistory from '/..pages/OrderHistory/OrderHistory'
-import Settings from '/..pages/Settings/Settings'
-import SignUp from '/..pages/SignUp/SignUp'
+import Home from '../pages/Home/Home'
+import Login from '../pages/Login/Login'
+import NewClip from '../pages/NewClip/NewClip'
+import NewOrder from '../pages/NewOrder/NewOrder'
+import OrderHistory from '../pages/OrderHistory/OrderHistory'
+import Settings from '../pages/Settings/Settings'
+import SignUp from '../pages/SignUp/SignUp'
 
 const routes = [
 
@@ -21,7 +21,7 @@ const routes = [
     {
         Component: NewClip,
         key: 'NewClip',
-        path: 'clippings/add'
+        path: '/clippings/add'
     },
     {
         Component: NewOrder,
