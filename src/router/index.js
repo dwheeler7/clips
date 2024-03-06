@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import routes from './routes'
 import { useState } from 'react'
-import styles from './AppRouter.module.scss'
+// import styles from './AppRouter.module.scss'
 import { getUser } from '../utilities/users-service'
 
 const AppRouter = () => {
