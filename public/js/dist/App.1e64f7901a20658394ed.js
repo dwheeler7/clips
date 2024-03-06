@@ -46,8 +46,17 @@ function Home() {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Login)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function Login() {
+
+// import LoginForm from '../../components/LoginForm/LoginForm'
+
+function Login(_ref) {
+  let {
+    user,
+    setUser
+  } = _ref;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Login"));
 }
 
@@ -142,36 +151,58 @@ function SignUp() {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./src/router/routes.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Home/Home */ "./src/pages/Home/Home.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
-// import styles from './AppRouter.module.scss'
+// import styles from './AppRouter.module.scss';
+
+
+
+// Components import statements (Home, NewClip, NewOrder, OrderHistory, Settings, Login, SignUp) should be here
 
 const AppRouter = () => {
-  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.getUser)());
-  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Routes, null, _routes__WEBPACK_IMPORTED_MODULE_0__["default"].map(_ref => {
+  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_3__.getUser)());
+  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.BrowserRouter, null, /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/",
+    element: /*#__PURE__*/React.createElement(_pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      user: user,
+      setUser: setUser
+    })
+  }), _routes__WEBPACK_IMPORTED_MODULE_0__["default"].map(_ref => {
     let {
       Component,
       key,
-      path
+      path,
+      gated
     } = _ref;
-    return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
-      key: key,
-      path: path,
-      element: /*#__PURE__*/React.createElement(Component, {
-        page: key
-        // user={user}
-        // setUser={setUser}
-      })
-    });
-  })))));
+    if (gated === !!user) {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        key: key,
+        path: path,
+        element: /*#__PURE__*/React.createElement(Component, {
+          page: key,
+          user: user,
+          setUser: setUser
+        })
+      });
+    } else {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: path,
+        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Navigate, {
+          replace: true,
+          to: "/"
+        })
+      });
+    }
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppRouter);
 
@@ -186,14 +217,12 @@ const AppRouter = () => {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Home/Home */ "./src/pages/Home/Home.js");
-/* harmony import */ var _pages_Login_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/Login/Login */ "./src/pages/Login/Login.js");
-/* harmony import */ var _pages_NewClip_NewClip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/NewClip/NewClip */ "./src/pages/NewClip/NewClip.js");
-/* harmony import */ var _pages_NewOrder_NewOrder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/NewOrder/NewOrder */ "./src/pages/NewOrder/NewOrder.js");
-/* harmony import */ var _pages_OrderHistory_OrderHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/OrderHistory/OrderHistory */ "./src/pages/OrderHistory/OrderHistory.js");
-/* harmony import */ var _pages_Settings_Settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/Settings/Settings */ "./src/pages/Settings/Settings.js");
-/* harmony import */ var _pages_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/SignUp/SignUp */ "./src/pages/SignUp/SignUp.js");
-
+/* harmony import */ var _pages_Login_Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Login/Login */ "./src/pages/Login/Login.js");
+/* harmony import */ var _pages_NewClip_NewClip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/NewClip/NewClip */ "./src/pages/NewClip/NewClip.js");
+/* harmony import */ var _pages_NewOrder_NewOrder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/NewOrder/NewOrder */ "./src/pages/NewOrder/NewOrder.js");
+/* harmony import */ var _pages_OrderHistory_OrderHistory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/OrderHistory/OrderHistory */ "./src/pages/OrderHistory/OrderHistory.js");
+/* harmony import */ var _pages_Settings_Settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/Settings/Settings */ "./src/pages/Settings/Settings.js");
+/* harmony import */ var _pages_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/SignUp/SignUp */ "./src/pages/SignUp/SignUp.js");
 
 
 
@@ -201,33 +230,35 @@ const AppRouter = () => {
 
 
 const routes = [{
-  Component: _pages_Home_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
-  key: 'Home',
-  path: '/'
-}, {
-  Component: _pages_Login_Login__WEBPACK_IMPORTED_MODULE_1__["default"],
-  key: 'Login',
-  path: '/login'
-}, {
-  Component: _pages_NewClip_NewClip__WEBPACK_IMPORTED_MODULE_2__["default"],
+  Component: _pages_NewClip_NewClip__WEBPACK_IMPORTED_MODULE_1__["default"],
   key: 'NewClip',
-  path: '/clippings/add'
+  path: '/clippings/add',
+  gated: true
 }, {
-  Component: _pages_NewOrder_NewOrder__WEBPACK_IMPORTED_MODULE_3__["default"],
+  Component: _pages_NewOrder_NewOrder__WEBPACK_IMPORTED_MODULE_2__["default"],
   key: 'NewOrder',
-  path: '/orders/new'
+  path: '/orders/new',
+  gated: true
 }, {
-  Component: _pages_OrderHistory_OrderHistory__WEBPACK_IMPORTED_MODULE_4__["default"],
+  Component: _pages_OrderHistory_OrderHistory__WEBPACK_IMPORTED_MODULE_3__["default"],
   key: 'OrderHistory',
-  path: '/orders'
+  path: '/orders',
+  gated: true
 }, {
-  Component: _pages_Settings_Settings__WEBPACK_IMPORTED_MODULE_5__["default"],
+  Component: _pages_Settings_Settings__WEBPACK_IMPORTED_MODULE_4__["default"],
   key: 'Settings',
-  path: '/settings'
+  path: '/settings',
+  gated: true
 }, {
-  Component: _pages_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_6__["default"],
+  Component: _pages_Login_Login__WEBPACK_IMPORTED_MODULE_0__["default"],
+  key: 'Login',
+  path: '/login',
+  gated: false
+}, {
+  Component: _pages_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_5__["default"],
   key: 'SignUp',
-  path: '/sign-up'
+  path: '/sign-up',
+  gated: false
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -544,4 +575,4 @@ function logOut() {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.aa1477835f52820b78d034af8f3f73a2.js.map
+//# sourceMappingURL=App.700ecc0e99c544f00c5e2f922426ab85.js.map
