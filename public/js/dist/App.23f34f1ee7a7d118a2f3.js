@@ -68,6 +68,106 @@ function LoginForm(_ref) {
 
 /***/ }),
 
+/***/ "./src/components/SignUpForm/SignUpForm.js":
+/*!*************************************************!*\
+  !*** ./src/components/SignUpForm/SignUpForm.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SignUpForm)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor() {
+    super(...arguments);
+    _defineProperty(this, "state", {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirm: '',
+      error: ''
+    });
+    _defineProperty(this, "handleChange", evt => {
+      this.setState({
+        [evt.target.name]: evt.target.value,
+        error: ''
+      });
+    });
+    _defineProperty(this, "handleSubmit", async evt => {
+      evt.preventDefault();
+      try {
+        const formData = _objectSpread({}, this.state);
+        delete formData.confirm;
+        delete formData.error;
+        const user = await (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
+        this.props.setUser(user);
+      } catch (_unused) {
+        this.setState({
+          error: 'Sign Up Failed - Try Again'
+        });
+      }
+    });
+  }
+  render() {
+    const disable = this.state.password !== this.state.confirm;
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      className: "form-container"
+    }, /*#__PURE__*/React.createElement("form", {
+      autoComplete: "off",
+      onSubmit: this.handleSubmit
+    }, /*#__PURE__*/React.createElement("label", null, "First name"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      name: "firstName",
+      value: this.state.firstName,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Last name"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      name: "lastName",
+      value: this.state.lastName,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Email"), /*#__PURE__*/React.createElement("input", {
+      type: "email",
+      name: "email",
+      value: this.state.email,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Password"), /*#__PURE__*/React.createElement("input", {
+      type: "password",
+      name: "password",
+      value: this.state.password,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Confirm"), /*#__PURE__*/React.createElement("input", {
+      type: "password",
+      name: "confirm",
+      value: this.state.confirm,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("button", {
+      type: "submit",
+      disabled: disable
+    }, "Sign up"))), /*#__PURE__*/React.createElement("p", {
+      className: "error-message"
+    }, "\xA0", this.state.error));
+  }
+}
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -202,9 +302,19 @@ function Settings() {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ SignUp)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_SignUpForm_SignUpForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SignUpForm/SignUpForm */ "./src/components/SignUpForm/SignUpForm.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function SignUp() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Sign up"));
+
+
+function SignUp(_ref) {
+  let {
+    setUser
+  } = _ref;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_SignUpForm_SignUpForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    setUser: setUser
+  }));
 }
 
 /***/ }),
@@ -400,9 +510,10 @@ function login(credentials) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getToken: () => (/* binding */ getToken),
 /* harmony export */   getUser: () => (/* binding */ getUser),
-/* harmony export */   login: () => (/* binding */ login)
+/* harmony export */   login: () => (/* binding */ login),
+/* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
-/* unused harmony exports signUp, logOut */
+/* unused harmony export logOut */
 /* harmony import */ var _users_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-api */ "./src/utilities/users-api.js");
 
 async function signUp(userData) {
@@ -643,4 +754,4 @@ function logOut() {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.44fb0595d71bded5345cdd26daa04c98.js.map
+//# sourceMappingURL=App.a5aad8661c27459bc83c9e8a4d0bc4e7.js.map
