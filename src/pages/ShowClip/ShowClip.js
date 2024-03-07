@@ -1,10 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { showClipping } from '../../utilities/clippings-service'
+import * as ordersAPI from '../../utilities/orders-api'
 
-export default function ShowClip() {
+export default function ShowClip({ cart, setCart }) {
     const [clipping, setClipping] = useState(null)
     const { id } = useParams()    
+
+    const navigate = useNavigate()
+
+   /*-- Event Handlers --*/
+   async function handleAddToOrder(itemId) {
+    const updatedCart = await ordersAPI.addItemToCart(itemId);
+    setCart(updatedCart);
+  }
+
 
     useEffect(() => {
         async function getClipping(clippingID) {
@@ -14,17 +24,24 @@ export default function ShowClip() {
         if (id) {
             getClipping(id)
         }
-    }, [id]) // Add clippingID as a dependency to useEffect
+        async function getCart() {
+            const cart = await ordersAPI.getCart()
+            setCart(cart);
+            }
+            getCart()
+    }, [id])
        
     return (
         <>
         <h1>Clipping</h1>
         {clipping && (
             <div>
-                {/* Display your clipping information here */}
-                <p>{clipping.plant}</p>
-            </div>
-        )}
+                <h2>{clipping.plant}</h2>
+                <p>Number of Clippings: {clipping.clippingsNum}</p>
+                <p>Description: {clipping.description || 'No description available.'}</p>   
+                <button onClick={() => handleAddToOrder(clipping._id)}>ADD</button>
+            </div>          
+        )}          
         </>
     )
 }

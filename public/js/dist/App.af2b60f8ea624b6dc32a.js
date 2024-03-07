@@ -2,6 +2,27 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/Footer/Footer.js":
+/*!*****************************************!*\
+  !*** ./src/components/Footer/Footer.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+const Footer = () => {
+  return /*#__PURE__*/React.createElement("footer", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/cart"
+  }, "Cart"));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
+
+/***/ }),
+
 /***/ "./src/components/LineItem/LineItem.js":
 /*!*********************************************!*\
   !*** ./src/components/LineItem/LineItem.js ***!
@@ -439,6 +460,49 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 
 /***/ }),
 
+/***/ "./src/pages/Cart/Cart.js":
+/*!********************************!*\
+  !*** ./src/pages/Cart/Cart.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Cart)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
+/* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+function Cart(_ref) {
+  let {
+    cart,
+    setCart
+  } = _ref;
+  async function handleChangeQty(itemId, newQty) {
+    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.setItemQtyInCart(itemId, newQty);
+    setCart(updatedCart);
+  }
+  async function handleCheckout() {
+    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.checkout();
+    navigate('/orders');
+  }
+  async function handleAddToOrder(itemId) {
+    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(itemId);
+    setCart(updatedCart);
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Cart"), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    order: cart,
+    handleChangeQty: handleChangeQty,
+    handleCheckout: handleCheckout
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/pages/Home/Home.js":
 /*!********************************!*\
   !*** ./src/pages/Home/Home.js ***!
@@ -450,8 +514,7 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
@@ -460,40 +523,11 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 const Home = _ref => {
   let {
     clippings,
-    user,
-    setUser,
-    setClippings
+    user
   } = _ref;
-  // const [cart, setCart] = useState(null)
-  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
-
-  /*-- Event Handlers --*/
-  //  async function handleAddToOrder(itemId) {
-  //   const updatedCart = await ordersAPI.addItemToCart(itemId);
-  //   setCart(updatedCart);
-  // }
-
-  // async function handleChangeQty(itemId, newQty) {
-  //   const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
-  //   setCart(updatedCart);
-  // }
-
-  // async function handleCheckout() {
-  //   await ordersAPI.checkout();
-  //   navigate('/orders');
-  // }
-
-  // useEffect(function() {
-  //   async function getCart() {
-  //     const cart = await ordersAPI.getCart()
-  //     setCart(cart);
-  //   }
-  //   getCart()
-  // }, [])
-
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Plant Clippings"), user && /*#__PURE__*/React.createElement("p", null, "Welcome, ", user.firstName, "!"), /*#__PURE__*/React.createElement("ul", null, clippings.map((clipping, index) => /*#__PURE__*/React.createElement("li", {
     key: index
-  }, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/clipping/".concat(clipping._id)
   }, "Learn more")))));
 };
@@ -680,27 +714,46 @@ function Settings() {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
+/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
+/* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
-function ShowClip() {
+
+function ShowClip(_ref) {
+  let {
+    cart,
+    setCart
+  } = _ref;
   const [clipping, setClipping] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const {
     id
   } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+
+  /*-- Event Handlers --*/
+  async function handleAddToOrder(itemId) {
+    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(itemId);
+    setCart(updatedCart);
+  }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function getClipping(clippingID) {
-      const foundClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_2__.showClipping)(clippingID);
+      const foundClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.showClipping)(clippingID);
       setClipping(foundClipping);
     }
     if (id) {
       getClipping(id);
     }
-  }, [id]); // Add clippingID as a dependency to useEffect
-
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Clipping"), clipping && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, clipping.plant)));
+    async function getCart() {
+      const cart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.getCart();
+      setCart(cart);
+    }
+    getCart();
+  }, [id]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Clipping"), clipping && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleAddToOrder(clipping._id)
+  }, "ADD")));
 }
 
 /***/ }),
@@ -740,15 +793,17 @@ function SignUp(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./src/router/routes.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
-/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utilities/clippings-service */ "./src/utilities/clippings-service.js");
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Home/Home */ "./src/pages/Home/Home.js");
+/* harmony import */ var _components_Footer_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer/Footer */ "./src/components/Footer/Footer.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 
@@ -756,18 +811,19 @@ function SignUp(_ref) {
 
 
 
-const AppRouter = () => {
-  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_3__.getUser)());
-  const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); // Ensure this is an array
 
+const AppRouter = () => {
+  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_4__.getUser)());
+  const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); // Ensure this is an array
+  const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     const fetchClippings = async () => {
-      const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_4__.getClippings)();
+      const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__.getClippings)();
       setClippings(clippings);
     };
     fetchClippings();
   }, []);
-  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  return /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/",
     key: "Home",
     element: /*#__PURE__*/React.createElement(_pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -775,7 +831,9 @@ const AppRouter = () => {
       user: user,
       setUser: setUser,
       clippings: clippings,
-      setClippings: setClippings
+      setClippings: setClippings,
+      cart: cart,
+      setCart: setCart
     })
   }), _routes__WEBPACK_IMPORTED_MODULE_0__["default"].map(_ref => {
     let {
@@ -785,26 +843,30 @@ const AppRouter = () => {
       gated
     } = _ref;
     if (gated === !!user) {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
         key: key,
         path: path,
         element: /*#__PURE__*/React.createElement(Component, {
           page: key,
           user: user,
-          setUser: setUser
+          setUser: setUser,
+          clippings: clippings,
+          setClippings: setClippings,
+          cart: cart,
+          setCart: setCart
         })
       });
     } else {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
         key: key,
         path: path,
-        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Navigate, {
+        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Navigate, {
           replace: true,
           to: "/"
         })
       });
     }
-  }))));
+  })), /*#__PURE__*/React.createElement(_components_Footer_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppRouter);
 
@@ -826,6 +888,8 @@ const AppRouter = () => {
 /* harmony import */ var _pages_Settings_Settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/Settings/Settings */ "./src/pages/Settings/Settings.js");
 /* harmony import */ var _pages_SignUp_SignUp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/SignUp/SignUp */ "./src/pages/SignUp/SignUp.js");
 /* harmony import */ var _pages_ShowClip_ShowClip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/ShowClip/ShowClip */ "./src/pages/ShowClip/ShowClip.js");
+/* harmony import */ var _pages_Cart_Cart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/Cart/Cart */ "./src/pages/Cart/Cart.js");
+
 
 
 
@@ -867,6 +931,11 @@ const routes = [{
   Component: _pages_ShowClip_ShowClip__WEBPACK_IMPORTED_MODULE_6__["default"],
   key: 'ShowClip',
   path: '/clipping/:id',
+  gated: true
+}, {
+  Component: _pages_Cart_Cart__WEBPACK_IMPORTED_MODULE_7__["default"],
+  key: 'Cart',
+  path: '/cart',
   gated: true
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
@@ -1751,4 +1820,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.9bfd761139806ce440db0974a190e0ae.js.map
+//# sourceMappingURL=App.6633bb8f66a5ea3d41fe1c44c107e4c4.js.map

@@ -5,6 +5,7 @@ import OrderHistory from '../pages/OrderHistory/OrderHistory'
 import Settings from '../pages/Settings/Settings'
 import SignUp from '../pages/SignUp/SignUp'
 import ShowClip from '../pages/ShowClip/ShowClip'
+import Cart from '../pages/Cart/Cart'
 
 
 const routes = [
@@ -48,6 +49,12 @@ const routes = [
             Component: ShowClip,
             key: 'ShowClip',
             path: '/clipping/:id',
+            gated: true
+        },
+        {
+            Component: Cart,
+            key: 'Cart',
+            path: '/cart',
             gated: true
         }
 
