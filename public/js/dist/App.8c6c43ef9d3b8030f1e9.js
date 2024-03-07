@@ -95,15 +95,23 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       firstName: '',
       lastName: '',
       email: '',
+      isClipper: false,
       password: '',
       confirm: '',
       error: ''
     });
     _defineProperty(this, "handleChange", evt => {
-      this.setState({
-        [evt.target.name]: evt.target.value,
-        error: ''
-      });
+      if (evt.target.type === 'checkbox') {
+        this.setState({
+          [evt.target.name]: evt.target.checked,
+          error: ''
+        });
+      } else {
+        this.setState({
+          [evt.target.name]: evt.target.value,
+          error: ''
+        });
+      }
     });
     _defineProperty(this, "handleSubmit", async evt => {
       evt.preventDefault();
@@ -145,7 +153,14 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       value: this.state.email,
       onChange: this.handleChange,
       required: true
-    }), /*#__PURE__*/React.createElement("label", null, "Password"), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("input", {
+      type: "checkbox",
+      id: "isClipper",
+      name: "isClipper",
+      onChange: this.handleChange
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "isClipper"
+    }, "I plan to post plant clippings"), /*#__PURE__*/React.createElement("label", null, "Password"), /*#__PURE__*/React.createElement("input", {
       type: "password",
       name: "password",
       value: this.state.password,
@@ -754,4 +769,4 @@ function logOut() {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.a5aad8661c27459bc83c9e8a4d0bc4e7.js.map
+//# sourceMappingURL=App.0237467857c24236d254393b9ab9fa24.js.map
