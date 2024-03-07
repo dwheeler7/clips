@@ -29,7 +29,7 @@ handleChange = (evt) => {
 handleSubmit = async (evt) => {
   evt.preventDefault()
   try {
-    const formData = {...this.state}
+    const formData = {...this.state}    
     delete formData.confirm
     delete formData.error
     const user = await signUp(formData)

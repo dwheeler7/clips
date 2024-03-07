@@ -1,9 +1,11 @@
+import { useState } from 'react'
+import NewClippingForm from '../../components/NewClippingForm/NewClippingForm'
+
 export default function NewClip() {
-  
+
     return (
         <>
-        <h1>New clipping</h1>
+        <NewClippingForm />
         </>
-      
     )
-  }
+}

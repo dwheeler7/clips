@@ -68,6 +68,91 @@ function LoginForm(_ref) {
 
 /***/ }),
 
+/***/ "./src/components/NewClippingForm/NewClippingForm.js":
+/*!***********************************************************!*\
+  !*** ./src/components/NewClippingForm/NewClippingForm.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ NewClippingForm)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
+  constructor() {
+    super(...arguments);
+    _defineProperty(this, "state", {
+      plant: '',
+      clippingsNum: 0,
+      description: ''
+    });
+    _defineProperty(this, "handleChange", evt => {
+      const value = evt.target.name === 'clippingsNum' ? parseInt(evt.target.value, 10) : evt.target.value;
+      this.setState({
+        [evt.target.name]: value,
+        error: ''
+      });
+    });
+    _defineProperty(this, "handleSubmit", async evt => {
+      evt.preventDefault();
+      try {
+        const formData = _objectSpread({}, this.state);
+        formData.clippingsNum = parseInt(formData.clippingsNum, 10);
+        delete formData.error;
+        await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_1__.addClipping)(formData);
+      } catch (_unused) {
+        this.setState({
+          error: 'Form Submission Failed - Try Again'
+        });
+      }
+    });
+  }
+  render() {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      className: "form-container"
+    }, /*#__PURE__*/React.createElement("form", {
+      autoComplete: "off",
+      onSubmit: this.handleSubmit
+    }, /*#__PURE__*/React.createElement("label", null, "Plant"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      name: "plant",
+      value: this.state.plant,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Number of clippings"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      name: "clippingsNum",
+      min: "0",
+      max: "50",
+      value: this.state.clippingsNum,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      name: "description",
+      value: this.state.description,
+      onChange: this.handleChange,
+      required: true
+    }), /*#__PURE__*/React.createElement("button", {
+      type: "submit"
+    }, "Add clipping"))), /*#__PURE__*/React.createElement("p", {
+      className: "error-message"
+    }, "\xA0", this.state.error));
+  }
+}
+
+/***/ }),
+
 /***/ "./src/components/SignUpForm/SignUpForm.js":
 /*!*************************************************!*\
   !*** ./src/components/SignUpForm/SignUpForm.js ***!
@@ -209,12 +294,23 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Home)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function Home() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Home"));
-}
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Home = _ref => {
+  let {
+    clippings,
+    user,
+    setUser,
+    setClippings
+  } = _ref;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Plant Clippings"), user && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Welcome, ", user.firstName, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, clippings.map((clipping, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    key: index
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, clipping.plant), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Description: ", clipping.description || 'No description available.')))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
 /***/ }),
 
@@ -253,9 +349,14 @@ function Login(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ NewClip)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_NewClippingForm_NewClippingForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/NewClippingForm/NewClippingForm */ "./src/components/NewClippingForm/NewClippingForm.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 function NewClip() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "New clipping"));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_NewClippingForm_NewClippingForm__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 }
 
 /***/ }),
@@ -343,12 +444,13 @@ function SignUp(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./src/router/routes.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Home/Home */ "./src/pages/Home/Home.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -357,15 +459,27 @@ function SignUp(_ref) {
 // import styles from './AppRouter.module.scss';
 
 
+
 const AppRouter = () => {
   const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_3__.getUser)());
-  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.BrowserRouter, null, /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); // Ensure this is an array
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const fetchClippings = async () => {
+      const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_4__.getClippings)();
+      setClippings(clippings);
+    };
+    fetchClippings();
+  }, []);
+  return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
     path: "/",
     key: "Home",
     element: /*#__PURE__*/React.createElement(_pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {
       page: "Home",
       user: user,
-      setUser: setUser
+      setUser: setUser,
+      clippings: clippings,
+      setClippings: setClippings
     })
   }), _routes__WEBPACK_IMPORTED_MODULE_0__["default"].map(_ref => {
     let {
@@ -375,7 +489,7 @@ const AppRouter = () => {
       gated
     } = _ref;
     if (gated === !!user) {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         key: key,
         path: path,
         element: /*#__PURE__*/React.createElement(Component, {
@@ -385,10 +499,10 @@ const AppRouter = () => {
         })
       });
     } else {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         key: key,
         path: path,
-        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Navigate, {
+        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Navigate, {
           replace: true,
           to: "/"
         })
@@ -453,6 +567,50 @@ const routes = [{
   gated: false
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
+
+/***/ }),
+
+/***/ "./src/utilities/clippings-api.js":
+/*!****************************************!*\
+  !*** ./src/utilities/clippings-api.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addClipping: () => (/* binding */ addClipping),
+/* harmony export */   getClippings: () => (/* binding */ getClippings)
+/* harmony export */ });
+/* harmony import */ var _send_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./send-request */ "./src/utilities/send-request.js");
+
+const BASE_URL = '/api/clippings';
+function addClipping(clippingData) {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])(BASE_URL, 'POST', clippingData);
+}
+function getClippings() {
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])(BASE_URL);
+}
+
+/***/ }),
+
+/***/ "./src/utilities/clippings-service.js":
+/*!********************************************!*\
+  !*** ./src/utilities/clippings-service.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addClipping: () => (/* binding */ addClipping),
+/* harmony export */   getClippings: () => (/* binding */ getClippings)
+/* harmony export */ });
+/* harmony import */ var _clippings_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clippings-api */ "./src/utilities/clippings-api.js");
+
+async function addClipping(clippingData) {
+  const clipping = await _clippings_api__WEBPACK_IMPORTED_MODULE_0__.addClipping(clippingData);
+}
+async function getClippings() {
+  const clippings = await _clippings_api__WEBPACK_IMPORTED_MODULE_0__.getClippings();
+  return clippings;
+}
 
 /***/ }),
 
@@ -769,4 +927,4 @@ function logOut() {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.0237467857c24236d254393b9ab9fa24.js.map
+//# sourceMappingURL=App.90bcccf4f8d42060953a3b62b4ff3fe1.js.map

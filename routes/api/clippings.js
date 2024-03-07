@@ -14,3 +14,5 @@ router.put('/:id', clippingsCtrl.update)
 router.post('/', clippingsCtrl.create)
 // Show
 router.get('/:id', clippingsCtrl.index)
+
+module.exports = router

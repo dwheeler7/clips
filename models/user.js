@@ -13,14 +13,14 @@ const userSchema = new Schema ({
         trim: true,
         lowercase: true
     },
+    clippings: [{ type: Schema.Types.ObjectId, ref: 'Clipping' }],
     password: {
         type: String,
         required: true,
         trim: true
     },
-    isClipper: { type: Boolean, required: true, default: false },
-    clippings: [{ type: Schema.Types.ObjectId, ref: 'Clipping'}]
-}, {
+    isClipper: { type: Boolean, required: true, default: false }
+    }, {
     timestamps: true,
     toJSON: {
         transform: function(doc, ret) {

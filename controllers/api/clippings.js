@@ -1,4 +1,5 @@
 const Clipping = require('../../models/clipping')
+const User = require('../../models/user')
 
 module.exports = {
     index, 
@@ -9,7 +10,7 @@ module.exports = {
     show
 }
 
-const index = async (req, res) => {
+async function index (req, res) {
     try {
         const clippings = await Clipping.find({ clippingsNum: {$gt: 0} })
         res.status(200).json(clippings)
@@ -18,7 +19,7 @@ const index = async (req, res) => {
     }
 }
 
-const indexOfClipper = async (req, res) => {
+async function indexOfClipper(req, res) {
     try {
         const clippings = await Clipping.find({ clipper: req.params.clipperId, clippingsNum: {$gt: 0} })
         res.status(200).json(clippings)
@@ -27,7 +28,7 @@ const indexOfClipper = async (req, res) => {
     }
 }
 
-const destroy = async (req, res) => {
+async function destroy (req, res) {
     try {        
         const clipping = await Clipping.findOneAndDelete({_id: req.params.id})
         req.user.clippings.pull(clipping)
@@ -38,7 +39,7 @@ const destroy = async (req, res) => {
     }
 }
 
-const update = async (req, res) => {
+async function update (req, res) {
     try {
         const clipping = await Clipping.findOneAndUpdate({_id : req.params.id}, req.body, { new: true })
         res.status(200).json(clipping)
@@ -47,22 +48,24 @@ const update = async (req, res) => {
     }
 }
 
-const create = async (req, res) => {
-    try {
-        const clipping = await Clipping.create(req.body)
-        clipping.clipper = req.user._id
-        req.user.clippings.push(clipping._id)
-        await clipping.save()
-        await req.user.save()
+async function create (req, res) {
+    try {        
+        req.body.clipper = req.user._id        
+        if(!req.user.isClipper) throw new Error('Must be clipper to add a clipping')
+        const clipping = await Clipping.create(req.body)        
+        const user = await User.findById(req.user._id)
+        user.clippings.push(clipping._id)
+        await user.save()        
         res.status(200).json(clipping)
-    } catch(err) {
+    } catch(err) {        
         res.status(400).json({ msg: err.message })
     }
 }
 
-const show = async (req, res) => {
+async function show(req, res) {
     try {
-
+        const clipping = await Clipping.findOne({ _id: req.params.id })
+        res.status(200).json(clipping)
     } catch(err) {
         res.status(400).json({ msg: err.message })
     }
