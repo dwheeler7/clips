@@ -18,7 +18,8 @@ const userSchema = new Schema ({
         required: true,
         trim: true
     },
-    isClipper: { type: Boolean, required: true, default: false }
+    isClipper: { type: Boolean, required: true, default: false },
+    clippings: [{ type: Schema.Types.ObjectId, ref: 'Clipping'}]
 }, {
     timestamps: true,
     toJSON: {
