@@ -11,10 +11,10 @@ app.use(express.static('public'))
 app.use(require('./config/checkToken'))
 
 // Put API routes here, before the "catch all" route
-app.use('/api/users', require('./routes/api/user'))
+app.use('/api/users', require('./routes/api/users'))
 // Protect the API routes below from anonymous users
 const checkLoggedIn = require('./config/checkLoggedIn')
-// app.use('/api/items', checkLoggedIn, require('./routes/api/items'))
+app.use('/api/clippings', checkLoggedIn, require('./routes/api/clippings'))
 // app.use('/api/orders', checkLoggedIn, require('./routes/api/orders'))
 
 // for react router

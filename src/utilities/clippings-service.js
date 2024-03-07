@@ -1,0 +1,1 @@
+import * as clippingsAPI from './clippings-api'
