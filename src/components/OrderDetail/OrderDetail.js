@@ -16,14 +16,6 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
 
     return (
       <div className={styles.OrderDetail}>
-        <div className={styles.sectionHeading}>
-          {order.isComplete ?
-            <span>ORDER <span className="smaller">{order.orderId}</span></span>
-            :
-            <span>NEW ORDER</span>
-          }
-          <span>{new Date(order.updatedAt).toLocaleDateString()}</span>
-        </div>
         <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
           {lineItems.length ?
             <>
@@ -42,7 +34,7 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
               </section>
             </>
             :
-            <div className={styles.hungry}>Hungry?</div>
+            <div className={styles.hungry}>Your cart is empty.</div>
           }
         </div>
       </div>

@@ -1,9 +1,16 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Footer = () => {
+const Footer = ({ cart }) => {
+  const [showCart, setShowCart] = useState()
+
+  useEffect(() => {
+    setShowCart(cart ? true : false)
+  }, [cart])
+
   return (
     <footer>      
-      <Link to="/cart">Cart</Link>
+      {showCart ? <Link to="/cart">Cart</Link> : ''}
     </footer>
   )
 }

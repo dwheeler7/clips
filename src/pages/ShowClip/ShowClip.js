@@ -5,9 +5,7 @@ import * as ordersAPI from '../../utilities/orders-api'
 
 export default function ShowClip({ cart, setCart }) {
     const [clipping, setClipping] = useState(null)
-    const { id } = useParams()    
-
-    const navigate = useNavigate()
+    const { id } = useParams()
 
    /*-- Event Handlers --*/
    async function handleAddToOrder(itemId) {
@@ -23,12 +21,7 @@ export default function ShowClip({ cart, setCart }) {
         }
         if (id) {
             getClipping(id)
-        }
-        async function getCart() {
-            const cart = await ordersAPI.getCart()
-            setCart(cart);
-            }
-            getCart()
+        }       
     }, [id])
        
     return (

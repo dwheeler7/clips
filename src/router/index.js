@@ -11,7 +11,7 @@ import Footer from '../components/Footer/Footer'
 const AppRouter = () => {
     const [user, setUser] = useState(getUser())
     const [clippings, setClippings] = useState([]); // Ensure this is an array
-    const [cart, setCart] = useState(null)
+    const [cart, setCart] = useState()
 
     useEffect(() => {        
         const fetchClippings = async () => {
@@ -19,7 +19,7 @@ const AppRouter = () => {
             setClippings(clippings)
         };        
         fetchClippings()
-    }, [])
+    }, [])    
 
     return (
         <main>
@@ -34,7 +34,7 @@ const AppRouter = () => {
                         }
                     })}
                 </Routes> 
-                <Footer />       
+                <Footer cart={cart} />       
             </Router>
         </main>
         
