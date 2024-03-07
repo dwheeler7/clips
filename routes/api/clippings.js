@@ -13,6 +13,6 @@ router.put('/:id', clippingsCtrl.update)
 // Create
 router.post('/', clippingsCtrl.create)
 // Show
-router.get('/:id', clippingsCtrl.index)
+router.get('/:id', clippingsCtrl.show)
 
 module.exports = router

@@ -9,3 +9,7 @@ export function addClipping(clippingData) {
 export function getClippings() {
     return sendRequest(BASE_URL)
 }
+
+export function showClipping(id) {
+    return sendRequest(`${BASE_URL}/${id}`)
+}

@@ -63,7 +63,7 @@ async function create (req, res) {
 }
 
 async function show(req, res) {
-    try {
+    try {        
         const clipping = await Clipping.findOne({ _id: req.params.id })
         res.status(200).json(clipping)
     } catch(err) {

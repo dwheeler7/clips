@@ -4,6 +4,7 @@ import NewOrder from '../pages/NewOrder/NewOrder'
 import OrderHistory from '../pages/OrderHistory/OrderHistory'
 import Settings from '../pages/Settings/Settings'
 import SignUp from '../pages/SignUp/SignUp'
+import ShowClip from '../pages/ShowClip/ShowClip'
 
 
 const routes = [
@@ -42,6 +43,12 @@ const routes = [
             key: 'SignUp',
             path: '/sign-up',
             gated: false
+        },
+        {
+            Component: ShowClip,
+            key: 'ShowClip',
+            path: '/clipping/:id',
+            gated: true
         }
 
     ]
