@@ -51,6 +51,7 @@ function LineItem(_ref) {
     isComplete,
     handleChangeQty
   } = _ref;
+  console.log(lineItem);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -195,6 +196,34 @@ function MenuListItem(_ref) {
     className: "btn-sm",
     onClick: () => handleAddToOrder(menuItem._id)
   }, "ADD")));
+}
+
+/***/ }),
+
+/***/ "./src/components/Nav/Nav.js":
+/*!***********************************!*\
+  !*** ./src/components/Nav/Nav.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Nav)
+/* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function Nav() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/"
+  }, "Home"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/cart"
+  }, "Cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/clipping/add"
+  }, "Post clipping"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/login"
+  }, "Login"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    to: "/signup"
+  }, "Signup"));
 }
 
 /***/ }),
@@ -861,7 +890,9 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
 function ShowClip(_ref) {
   let {
     cart,
-    setCart
+    setCart,
+    clippings,
+    setClippings
   } = _ref;
   const [clipping, setClipping] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const {
@@ -874,6 +905,8 @@ function ShowClip(_ref) {
       if (!item.clippingsNum) throw new Error('There are not more clippings left');
       const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(item._id);
       setCart(updatedCart);
+      const updatedClippings = (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.updateLocalClippingsNum)(item._id, clippings, -1);
+      setClippings(updatedClippings);
       item.clippingsNum -= 1;
       setClipping(_objectSpread({}, item));
     } catch (err) {
@@ -932,15 +965,16 @@ function SignUp(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ "./src/router/routes.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
-/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utilities/clippings-service */ "./src/utilities/clippings-service.js");
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Home/Home */ "./src/pages/Home/Home.js");
 /* harmony import */ var _components_Footer_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer/Footer */ "./src/components/Footer/Footer.js");
+/* harmony import */ var _components_Nav_Nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Nav/Nav */ "./src/components/Nav/Nav.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
@@ -950,14 +984,15 @@ function SignUp(_ref) {
 
 
 
+
 const AppRouter = () => {
-  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_4__.getUser)());
+  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_5__.getUser)());
   const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     const fetchClippings = async () => {
       try {
-        const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__.getClippings)();
+        const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_6__.getClippings)();
         setClippings(clippings);
       } catch (error) {
         console.error("Failed to fetch clippings:", error);
@@ -965,7 +1000,7 @@ const AppRouter = () => {
     };
     fetchClippings();
   }, []);
-  return /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  return /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, null, /*#__PURE__*/React.createElement(_components_Nav_Nav__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/",
     key: "Home",
     element: /*#__PURE__*/React.createElement(_pages_Home_Home__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -985,7 +1020,7 @@ const AppRouter = () => {
       gated
     } = _ref;
     if (gated === !!user) {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
         key: key,
         path: path,
         element: /*#__PURE__*/React.createElement(Component, {
@@ -999,10 +1034,10 @@ const AppRouter = () => {
         })
       });
     } else {
-      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+      return /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
         key: key,
         path: path,
-        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Navigate, {
+        element: /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Navigate, {
           replace: true,
           to: "/"
         })
@@ -1121,7 +1156,8 @@ function showClipping(id) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   addClipping: () => (/* binding */ addClipping),
 /* harmony export */   getClippings: () => (/* binding */ getClippings),
-/* harmony export */   showClipping: () => (/* binding */ showClipping)
+/* harmony export */   showClipping: () => (/* binding */ showClipping),
+/* harmony export */   updateLocalClippingsNum: () => (/* binding */ updateLocalClippingsNum)
 /* harmony export */ });
 /* harmony import */ var _clippings_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clippings-api */ "./src/utilities/clippings-api.js");
 
@@ -1135,6 +1171,12 @@ async function getClippings() {
 async function showClipping(clippingId) {
   const clipping = await _clippings_api__WEBPACK_IMPORTED_MODULE_0__.showClipping(clippingId);
   return clipping;
+}
+function updateLocalClippingsNum(clippingId, clippings, increment) {
+  console.log('clippings', clippings);
+  const clippingIdx = clippings.findIndex(obj => obj._id === clippingId);
+  clippings[clippingIdx].clippingsNum += increment;
+  return clippings;
 }
 
 /***/ }),
@@ -2175,4 +2217,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.224e3d7dce28f1c18d29f27200b515e1.js.map
+//# sourceMappingURL=App.508ae231d2c373cdcc48648fc0d0aac8.js.map

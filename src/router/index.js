@@ -6,6 +6,7 @@ import { getUser } from '../utilities/users-service'
 import { getClippings } from '../utilities/clippings-service'
 import Home from '../pages/Home/Home'
 import Footer from '../components/Footer/Footer'
+import Nav from '../components/Nav/Nav'
 
 const AppRouter = () => {
     const [user, setUser] = useState(() => getUser())
@@ -25,8 +26,11 @@ const AppRouter = () => {
     }, [])    
 
     return (
+        
         <main>
+            
             <Router>            
+                <Nav />
                 <Routes>
                     <Route path="/" key='Home' element={<Home page='Home' user={user} setUser={setUser} clippings={clippings} setClippings={setClippings} cart={cart} setCart={setCart}/>} />
                     {routes.map(({ Component, key, path, gated }) => {

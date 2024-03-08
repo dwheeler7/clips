@@ -1,6 +1,7 @@
 import styles from './LineItem.module.scss';
 
 export default function LineItem({ lineItem, isComplete, handleChangeQty }) {  
+  console.log(lineItem)
 return (
   <div className={styles.LineItem}>
     <div className="flex-ctr-ctr">{lineItem.item.plant}</div>    

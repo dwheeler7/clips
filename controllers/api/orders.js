@@ -1,4 +1,5 @@
 const Order = require('../../models/order')
+const Clipping = require('../../models/clipping')
 
 module.exports = {
   cart,
@@ -11,8 +12,8 @@ module.exports = {
 // A cart is the unpaid order for a user
 async function cart(req, res) {
   try{
-    const cart = await Order.getCart(req.user._id)    
-    res.status(200).json(cart);
+    const cart = await Order.getCart(req.user._id)
+    res.status(200).json(cart)
   }catch(e){
     res.status(400).json({ msg: e.message });
   }
@@ -23,6 +24,7 @@ async function addToCart(req, res) {
   try{
     const cart = await Order.getCart(req.user._id)
     await cart.addItemToCart(req.params.id)
+    const foundClippingId = 
     res.status(200).json(cart)
   }catch(e){
     res.status(400).json({ msg: e.message })

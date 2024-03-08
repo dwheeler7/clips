@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { showClipping } from '../../utilities/clippings-service'
+import { showClipping, updateLocalClippingsNum } from '../../utilities/clippings-service'
 import * as ordersAPI from '../../utilities/orders-api'
 
-export default function ShowClip({ cart, setCart }) {
+export default function ShowClip({ cart, setCart, clippings, setClippings }) {
     const [clipping, setClipping] = useState(null)
     const { id } = useParams()
 
@@ -13,6 +13,8 @@ export default function ShowClip({ cart, setCart }) {
         if (!item.clippingsNum) throw new Error('There are not more clippings left')
         const updatedCart = await ordersAPI.addItemToCart(item._id)
         setCart(updatedCart)
+        const updatedClippings = updateLocalClippingsNum(item._id, clippings, -1)
+        setClippings(updatedClippings)
         item.clippingsNum -= 1
         setClipping({...item})
     } catch(err) {
@@ -22,6 +24,7 @@ export default function ShowClip({ cart, setCart }) {
 
     useEffect(() => {
         async function getClipping(clippingID) {
+            // the issue here is that i'm pulling the clipping from the api which is overwriting the local count
             const foundClipping = await showClipping(clippingID)            
             setClipping(foundClipping)
         }

@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const lineItemSchema = new Schema({
     qty: { type: Number, default: 1 },
     item: { type: Schema.Types.ObjectId, ref: 'Clipping' }
+    // itemCount : { type: Number }
 }, {
     timestamps: true,
     toJSON: { virtuals: true }
@@ -19,12 +20,12 @@ const orderSchema = new Schema({
 });
 
 orderSchema.virtual('totalQty').get(function() {
-  return this.lineItems.reduce((total, item) => total + item.qty, 0);
-});
+  return this.lineItems.reduce((total, item) => total + item.qty, 0)
+})
 
 orderSchema.virtual('orderId').get(function() {
-  return this.id.slice(-6).toUpperCase();
-});
+  return this.id.slice(-6).toUpperCase()
+})
 
 orderSchema.statics.getCart = function(userId) {
   // 'this' is the Order model
@@ -40,8 +41,7 @@ orderSchema.statics.getCart = function(userId) {
 }
 
 orderSchema.methods.addItemToCart = async function(itemId) {
-  const cart = this
-  // Check if item already in cart
+  const cart = this  
   const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))
   if (lineItem) {
     lineItem.qty += 1
@@ -50,23 +50,22 @@ orderSchema.methods.addItemToCart = async function(itemId) {
     cart.lineItems.push({ item })
   }
   return cart.save()
-};
+}
 
-// Instance method to set an item's qty in the cart (will add item if does not exist)
-orderSchema.methods.setItemQty = function(itemId, newQty) {
-  // this keyword is bound to the cart (order doc)
+orderSchema.methods.setItemQty = function(itemId, newQty) {  
   const cart = this  
-  // Find the line item in the cart for the menu item
   const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))  
   if (lineItem && newQty <= 0) {
-    // Calling remove, removes itself from the cart.lineItems array
     lineItem.deleteOne()
   } else if (lineItem) {
-  
     lineItem.qty = newQty
   }
-  
   return cart.save()
 }
+
+orderSchema.methods.setItemNum = function(itemId, num) {
+  const cart = this
+}
+
 
 module.exports = mongoose.model('Order', orderSchema)

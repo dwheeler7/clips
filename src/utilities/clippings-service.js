@@ -13,3 +13,10 @@ export async function showClipping(clippingId) {
     const clipping = await clippingsAPI.showClipping(clippingId)    
     return clipping
 }
+
+export function updateLocalClippingsNum(clippingId, clippings, increment) {   
+    console.log('clippings', clippings) 
+    const clippingIdx = clippings.findIndex((obj) => obj._id === clippingId)
+    clippings[clippingIdx].clippingsNum += increment    
+    return clippings
+}
