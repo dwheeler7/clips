@@ -18,6 +18,7 @@ export function addItemToCart(itemId) {
 // Will add the item to the order if not currently in the cart
 // Sending info via the data payload instead of a long URL
 export function setItemQtyInCart(itemId, newQty) {
+  console.log('setting item qty...')
   return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', { itemId, newQty })
 }
 

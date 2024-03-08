@@ -51,6 +51,7 @@ function LineItem(_ref) {
     isComplete,
     handleChangeQty
   } = _ref;
+  console.log(lineItem);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -62,10 +63,10 @@ function LineItem(_ref) {
     }
   }, !isComplete && /*#__PURE__*/React.createElement("button", {
     className: "btn-xs",
-    onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty - 1)
+    onClick: () => handleChangeQty(lineItem.item, lineItem.qty - 1)
   }, "\u2212"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isComplete && /*#__PURE__*/React.createElement("button", {
     className: "btn-xs",
-    onClick: () => handleChangeQty(lineItem.item._id, lineItem.qty + 1)
+    onClick: () => handleChangeQty(lineItem.item, lineItem.qty + 1)
   }, "+")));
 }
 
@@ -564,6 +565,7 @@ function Cart(_ref) {
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   async function handleChangeQty(itemId, newQty) {
     try {
+      console.log('itemId', itemId);
       const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.setItemQtyInCart(itemId, newQty);
       setCart(updatedCart);
     } catch (err) {
@@ -575,12 +577,8 @@ function Cart(_ref) {
       await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.checkout();
       navigate('/orders');
     } catch (err) {
-      console.error("Checkout failed:", error);
+      console.error("Checkout failed:", err);
     }
-  }
-  async function handleAddToOrder(itemId) {
-    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.addItemToCart(itemId);
-    setCart(updatedCart);
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchCart() {
@@ -1163,6 +1161,7 @@ function addItemToCart(itemId) {
 // Will add the item to the order if not currently in the cart
 // Sending info via the data payload instead of a long URL
 function setItemQtyInCart(itemId, newQty) {
+  console.log('setting item qty...');
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/qty"), 'PUT', {
     itemId,
     newQty
@@ -1199,7 +1198,6 @@ async function sendRequest(url) {
   const options = {
     method
   };
-  console.log('payload', !!payload);
   if (payload) {
     options.headers = {
       'Content-Type': 'application/json'
@@ -1207,13 +1205,11 @@ async function sendRequest(url) {
     options.body = JSON.stringify(payload);
   }
   const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
-  console.log('token', !!token);
   if (token) {
     options.headers = options.headers || {};
     options.headers.Authorization = "Bearer ".concat(token);
   }
   const res = await fetch(url, options);
-  console.log('res', !!res);
   if (res.ok) {
     return res.json();
   } else {
@@ -2168,4 +2164,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.264e6d602c39a9599b0908b86cb98b7d.js.map
+//# sourceMappingURL=App.b3651d0c7ac0298a0f05a8abbfb54b0d.js.map

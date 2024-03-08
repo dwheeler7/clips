@@ -55,9 +55,9 @@ orderSchema.methods.addItemToCart = async function(itemId) {
 // Instance method to set an item's qty in the cart (will add item if does not exist)
 orderSchema.methods.setItemQty = function(itemId, newQty) {
   // this keyword is bound to the cart (order doc)
-  const cart = this
+  const cart = this  
   // Find the line item in the cart for the menu item
-  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))
+  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId))  
   if (lineItem && newQty <= 0) {
     // Calling remove, removes itself from the cart.lineItems array
     lineItem.deleteOne()

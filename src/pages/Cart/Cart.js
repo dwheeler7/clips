@@ -8,25 +8,21 @@ export default function Cart({ cart, setCart }) {
     const [isLoading, setIsLoading] = useState(true)
 
     async function handleChangeQty(itemId, newQty) {
-        try {
+        try {          
           const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
           setCart(updatedCart)
         } catch(err) {
           console.error(err)
         }
       }
+
       async function handleCheckout() {
         try {
           await ordersAPI.checkout();
           navigate('/orders');
         } catch(err) {
-          console.error("Checkout failed:", error)
+          console.error("Checkout failed:", err)
         }
-      }
-
-      async function handleAddToOrder(itemId) {
-        const updatedCart = await ordersAPI.addItemToCart(itemId);
-        setCart(updatedCart);
       }
 
       useEffect(() => {
@@ -57,4 +53,4 @@ export default function Cart({ cart, setCart }) {
           />
         </>      
     )
-  }
+}
