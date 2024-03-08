@@ -5,14 +5,23 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Cart({ cart, setCart }) {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(true)
+
     async function handleChangeQty(itemId, newQty) {
-        const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
-        setCart(updatedCart);
+        try {
+          const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
+          setCart(updatedCart)
+        } catch(err) {
+          console.error(err)
+        }
       }
-    
       async function handleCheckout() {
-        await ordersAPI.checkout();
-        navigate('/orders');
+        try {
+          await ordersAPI.checkout();
+          navigate('/orders');
+        } catch(err) {
+          console.error("Checkout failed:", error)
+        }
       }
 
       async function handleAddToOrder(itemId) {
@@ -21,12 +30,22 @@ export default function Cart({ cart, setCart }) {
       }
 
       useEffect(() => {
-        async function getCart() {
+        async function fetchCart() {
+          try {
             const cart = await ordersAPI.getCart()
-            setCart(cart);
+            setCart(cart)
+          } catch(err) {
+            console.error("Failed to get cart", err)
+          } finally {
+            setIsLoading(false)
+          }
         }
-        getCart()
+        fetchCart()
     }, [])
+
+    if (isLoading) {
+      return <div>Loading cart...</div>
+  }
 
     return (
         <>

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import routes from './routes'
 import { useState, useEffect } from 'react'
 // import styles from './AppRouter.module.scss';
@@ -9,15 +8,19 @@ import Home from '../pages/Home/Home'
 import Footer from '../components/Footer/Footer'
 
 const AppRouter = () => {
-    const [user, setUser] = useState(getUser())
-    const [clippings, setClippings] = useState([]); // Ensure this is an array
-    const [cart, setCart] = useState()
+    const [user, setUser] = useState(() => getUser())
+    const [clippings, setClippings] = useState([])
+    const [cart, setCart] = useState([])
 
     useEffect(() => {        
         const fetchClippings = async () => {
-            const clippings = await getClippings()
-            setClippings(clippings)
-        };        
+            try {
+                const clippings = await getClippings()
+                setClippings(clippings)
+            } catch (error) {
+                console.error("Failed to fetch clippings:", error)
+            }
+        }
         fetchClippings()
     }, [])    
 

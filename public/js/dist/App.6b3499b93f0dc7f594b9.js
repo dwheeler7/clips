@@ -307,6 +307,7 @@ function OrderDetail(_ref) {
     handleCheckout
   } = _ref;
   if (!order) return null;
+  console.log(order);
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isComplete: order.isComplete,
@@ -560,25 +561,43 @@ function Cart(_ref) {
     setCart
   } = _ref;
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   async function handleChangeQty(itemId, newQty) {
-    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.setItemQtyInCart(itemId, newQty);
-    setCart(updatedCart);
+    try {
+      const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.setItemQtyInCart(itemId, newQty);
+      setCart(updatedCart);
+    } catch (err) {
+      console.error(err);
+    }
   }
   async function handleCheckout() {
-    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.checkout();
-    navigate('/orders');
+    try {
+      await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.checkout();
+      navigate('/orders');
+    } catch (err) {
+      console.error("Checkout failed:", error);
+    }
   }
   async function handleAddToOrder(itemId) {
     const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.addItemToCart(itemId);
     setCart(updatedCart);
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    async function getCart() {
-      const cart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.getCart();
-      setCart(cart);
+    async function fetchCart() {
+      try {
+        const cart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.getCart();
+        setCart(cart);
+      } catch (err) {
+        console.error("Failed to get cart", err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    getCart();
+    fetchCart();
   }, []);
+  if (isLoading) {
+    return /*#__PURE__*/React.createElement("div", null, "Loading cart...");
+  }
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Cart"), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
@@ -688,13 +707,8 @@ function NewClip() {
 
 
 
-// import styles from './NewOrderPage.module.scss'
 
-// import Logo from '../../components/Logo/Logo'
 
-// import CategoryList from '../../components/CategoryList/CategoryList'
-
-// import UserLogOut from '../../components/UserLogOut/UserLogOut'
 
 function NewOrderPage(_ref) {
   let {
@@ -702,17 +716,11 @@ function NewOrderPage(_ref) {
     setUser
   } = _ref;
   const [menuItems, setMenuItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  //   const [activeCat, setActiveCat] = useState('')
   const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  //   const categoriesRef = useRef([])
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     async function getItems() {
       const items = await _utilities_clippings_api__WEBPACK_IMPORTED_MODULE_4__.getClippings();
-      //   categoriesRef.current = items.reduce((cats, item) => {
-      //     const cat = item.category.name;
-      //     return cats.includes(cat) ? cats : [...cats, cat];
-      //   }, []);
       setMenuItems(items);
       //   setActiveCat(categoriesRef.current[0]);
     }
@@ -928,20 +936,23 @@ function SignUp(_ref) {
 
 
 
-
 // import styles from './AppRouter.module.scss';
 
 
 
 
 const AppRouter = () => {
-  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_4__.getUser)());
-  const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); // Ensure this is an array
-  const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_4__.getUser)());
+  const [clippings, setClippings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     const fetchClippings = async () => {
-      const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__.getClippings)();
-      setClippings(clippings);
+      try {
+        const clippings = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_5__.getClippings)();
+        setClippings(clippings);
+      } catch (error) {
+        console.error("Failed to fetch clippings:", error);
+      }
     };
     fetchClippings();
   }, []);
@@ -1138,6 +1149,7 @@ const BASE_URL = '/api/orders';
 
 // Retrieve an unpaid order for the logged in user
 function getCart() {
+  console.log('getting cart');
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart"));
 }
 
@@ -1187,6 +1199,7 @@ async function sendRequest(url) {
   const options = {
     method
   };
+  console.log('payload', !!payload);
   if (payload) {
     options.headers = {
       'Content-Type': 'application/json'
@@ -1194,11 +1207,13 @@ async function sendRequest(url) {
     options.body = JSON.stringify(payload);
   }
   const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
+  console.log('token', !!token);
   if (token) {
     options.headers = options.headers || {};
     options.headers.Authorization = "Bearer ".concat(token);
   }
   const res = await fetch(url, options);
+  console.log('res', !!res);
   if (res.ok) {
     return res.json();
   } else {
@@ -2153,4 +2168,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.78628a5da29887e2b25b6d26ef6cb904.js.map
+//# sourceMappingURL=App.264e6d602c39a9599b0908b86cb98b7d.js.map
