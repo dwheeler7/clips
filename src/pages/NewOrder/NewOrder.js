@@ -14,49 +14,37 @@ export default function NewOrderPage({ user, setUser }) {
     async function getItems() {
       const items = await clippingsAPI.getClippings();
       setMenuItems(items);
-    //   setActiveCat(categoriesRef.current[0]);
     }
-    getItems();
+    getItems()
     async function getCart() {
       const cart = await ordersAPI.getCart();
-      setCart(cart);
+      setCart(cart)
     }
-    getCart();
-  }, []);
-  // Providing an empty 'dependency array'
-  // results in the effect running after
-  // the FIRST render only
+    getCart()
+  }, [])  
 
-  /*-- Event Handlers --*/
   async function handleAddToOrder(itemId) {
-    const updatedCart = await ordersAPI.addItemToCart(itemId);
-    setCart(updatedCart);
+    const updatedCart = await ordersAPI.addItemToCart(itemId)
+    setCart(updatedCart)
   }
 
   async function handleChangeQty(itemId, newQty) {
-    const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
-    setCart(updatedCart);
-  }
-
-  async function handleCheckout(cartArg) {    
-    await ordersAPI.checkout(cartArg)
-    navigate('/orders')
-  }
+    const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
+    setCart(updatedCart)
+}
 
   return (
     <main>
       <aside>                
-        <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
-        {/* <UserLogOut user={user} setUser={setUser} /> */}
+        <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>        
       </aside>
       <MenuList
         menuItems={menuItems}
-        handleAddToOrder={handleAddToOrder}
+        handleAddToOrder={ordersService.handleAddToOrder}
       />
       <OrderDetail
         order={cart}
-        handleChangeQty={handleChangeQty}
-        handleCheckout={handleCheckout}
+        handleChangeQty={handleChangeQty}       
       />
     </main>
   )

@@ -218,7 +218,7 @@ function Nav() {
   }, "Home"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
     to: "/cart"
   }, "Cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
-    to: "/clipping/add"
+    to: "/clippings/add"
   }, "Post clipping"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
     to: "/login"
   }, "Login"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
@@ -324,7 +324,11 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 /* harmony export */ });
 /* harmony import */ var _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderDetail.module.scss */ "./src/components/OrderDetail/OrderDetail.module.scss");
 /* harmony import */ var _LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LineItem/LineItem */ "./src/components/LineItem/LineItem.js");
+/* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
@@ -332,10 +336,14 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 function OrderDetail(_ref) {
   let {
     order,
-    handleChangeQty,
-    handleCheckout
+    handleChangeQty
   } = _ref;
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
   if (!order) return null;
+  const handleCheckout = async cart => {
+    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.checkout(cart);
+    navigate('/orders');
+  };
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isComplete: order.isComplete,
@@ -744,7 +752,6 @@ function NewOrderPage(_ref) {
     async function getItems() {
       const items = await _utilities_clippings_api__WEBPACK_IMPORTED_MODULE_4__.getClippings();
       setMenuItems(items);
-      //   setActiveCat(categoriesRef.current[0]);
     }
     getItems();
     async function getCart() {
@@ -753,11 +760,6 @@ function NewOrderPage(_ref) {
     }
     getCart();
   }, []);
-  // Providing an empty 'dependency array'
-  // results in the effect running after
-  // the FIRST render only
-
-  /*-- Event Handlers --*/
   async function handleAddToOrder(itemId) {
     const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.addItemToCart(itemId);
     setCart(updatedCart);
@@ -766,20 +768,15 @@ function NewOrderPage(_ref) {
     const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.setItemQtyInCart(itemId, newQty);
     setCart(updatedCart);
   }
-  async function handleCheckout(cartArg) {
-    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.checkout(cartArg);
-    navigate('/orders');
-  }
   return /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/orders",
     className: "button btn-sm"
   }, "PREVIOUS ORDERS")), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_1__["default"], {
     menuItems: menuItems,
-    handleAddToOrder: handleAddToOrder
+    handleAddToOrder: ordersService.handleAddToOrder
   }), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_2__["default"], {
     order: cart,
-    handleChangeQty: handleChangeQty,
-    handleCheckout: handleCheckout
+    handleChangeQty: handleChangeQty
   }));
 }
 
@@ -1220,9 +1217,11 @@ function setItemQtyInCart(itemId, newQty) {
 
 // Updates the order's (cart's) isPaid property to true
 function checkout(cart) {
-  console.log('cart.....', cart);
+  const lineItems = cart.lineItems;
   // Changing data on the server, so make it a POST request
-  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/checkout"), 'POST');
+  return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/checkout"), 'POST', {
+    lineItems
+  });
 }
 
 // Return all paid orders for the logged in user
@@ -2215,4 +2214,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.7657f9bb37f3a8de44302b3e89cdf082.js.map
+//# sourceMappingURL=App.469bf5ba98a14b11756c0a6205782e1e.js.map

@@ -1,5 +1,6 @@
 const Order = require('../../models/order')
 const Clipping = require('../../models/clipping')
+const clippingsCtrl = require('../../controllers/api/clippings')
 
 module.exports = {
   cart,
@@ -22,9 +23,9 @@ async function cart(req, res) {
 // Add an item to the cart
 async function addToCart(req, res) {
   try{
+    const itemId = req.params.id
     const cart = await Order.getCart(req.user._id)
-    await cart.addItemToCart(req.params.id)
-    const foundClippingId = 
+    await cart.addItemToCart(itemId)    
     res.status(200).json(cart)
   }catch(e){
     res.status(400).json({ msg: e.message })
@@ -46,6 +47,37 @@ async function setItemQtyInCart(req, res) {
 async function checkout(req, res) {
   try{
     const cart = await Order.getCart(req.user._id)
+    const lineItems = req.body.lineItems
+    let itemSums = []
+    
+    const promises = lineItems.map(item => {
+      return Clipping.findOne({ _id: item.item })
+        .then(foundClipping => {
+          if (!foundClipping) throw new Error('Could not find clipping from cart')
+          const sum = foundClipping.clippingsNum - item.qty
+          if (sum < 0) throw new Error(`There aren't enough clippings of the ${foundClipping.plant}. Logout, log back in, and try again.`)
+          return sum
+        })
+    })
+    
+    itemSums = await Promise.all(promises);
+
+    lineItems.forEach((item, idx) => {
+      const updateOrDeleteClipping = async item => {
+        try {
+          const sum = itemSums[idx]
+          console.log('sum', sum)
+        if (sum) {          
+          await Clipping.findOneAndUpdate({_id : item.item}, {clippingsNum: sum}, { new: true })          
+        } else {
+          await Clipping.findOneAndDelete({_id : item.item})          
+        }
+        } catch(err) {
+          res.status(400).json({ msg: err.message })    
+        }
+      }
+      updateOrDeleteClipping(item)
+    })    
     cart.isComplete = true
     await cart.save()
     res.status(200).json(cart)
