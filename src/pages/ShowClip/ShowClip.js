@@ -8,16 +8,17 @@ export default function ShowClip({ cart, setCart }) {
     const { id } = useParams()
 
    /*-- Event Handlers --*/
-   async function handleAddToOrder(itemId) {
-    try {
-        const updatedCart = await ordersAPI.addItemToCart(itemId)
+   async function handleAddToOrder(item) {
+    try {        
+        if (!item.clippingsNum) throw new Error('There are not more clippings left')
+        const updatedCart = await ordersAPI.addItemToCart(item._id)
         setCart(updatedCart)
-        clipping.clippingsNum -= 1
+        item.clippingsNum -= 1
+        setClipping({...item})
     } catch(err) {
         console.error(err)
     }    
   }
-
 
     useEffect(() => {
         async function getClipping(clippingID) {
@@ -37,7 +38,7 @@ export default function ShowClip({ cart, setCart }) {
                 <h2>{clipping.plant}</h2>
                 <p>Number of Clippings: {clipping.clippingsNum}</p>
                 <p>Description: {clipping.description || 'No description available.'}</p>   
-                <button onClick={() => handleAddToOrder(clipping._id)}>ADD</button>
+                <button onClick={() => handleAddToOrder(clipping)} disabled={!clipping.clippingsNum}>ADD</button>
             </div>          
         )}          
         </>

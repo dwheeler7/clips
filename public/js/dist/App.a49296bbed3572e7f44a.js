@@ -849,6 +849,11 @@ function Settings() {
 /* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -864,11 +869,13 @@ function ShowClip(_ref) {
   } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)();
 
   /*-- Event Handlers --*/
-  async function handleAddToOrder(itemId) {
+  async function handleAddToOrder(item) {
     try {
-      const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(itemId);
+      if (!item.clippingsNum) throw new Error('There are not more clippings left');
+      const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(item._id);
       setCart(updatedCart);
-      clipping.clippingsNum -= 1;
+      item.clippingsNum -= 1;
+      setClipping(_objectSpread({}, item));
     } catch (err) {
       console.error(err);
     }
@@ -883,7 +890,8 @@ function ShowClip(_ref) {
     }
   }, [id]);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Clipping"), clipping && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement("button", {
-    onClick: () => handleAddToOrder(clipping._id)
+    onClick: () => handleAddToOrder(clipping),
+    disabled: !clipping.clippingsNum
   }, "ADD")));
 }
 
@@ -2167,4 +2175,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.a3c086808277e1f902dfc1a05732a17f.js.map
+//# sourceMappingURL=App.224e3d7dce28f1c18d29f27200b515e1.js.map
