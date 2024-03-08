@@ -51,7 +51,6 @@ function LineItem(_ref) {
     isComplete,
     handleChangeQty
   } = _ref;
-  console.log(lineItem);
   return /*#__PURE__*/React.createElement("div", {
     className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
   }, /*#__PURE__*/React.createElement("div", {
@@ -565,7 +564,6 @@ function Cart(_ref) {
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   async function handleChangeQty(itemId, newQty) {
     try {
-      console.log('itemId', itemId);
       const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.setItemQtyInCart(itemId, newQty);
       setCart(updatedCart);
     } catch (err) {
@@ -867,8 +865,13 @@ function ShowClip(_ref) {
 
   /*-- Event Handlers --*/
   async function handleAddToOrder(itemId) {
-    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(itemId);
-    setCart(updatedCart);
+    try {
+      const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(itemId);
+      setCart(updatedCart);
+      clipping.clippingsNum -= 1;
+    } catch (err) {
+      console.error(err);
+    }
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function getClipping(clippingID) {
@@ -2164,4 +2167,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.b3651d0c7ac0298a0f05a8abbfb54b0d.js.map
+//# sourceMappingURL=App.a3c086808277e1f902dfc1a05732a17f.js.map

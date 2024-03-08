@@ -62,11 +62,11 @@ orderSchema.methods.setItemQty = function(itemId, newQty) {
     // Calling remove, removes itself from the cart.lineItems array
     lineItem.deleteOne()
   } else if (lineItem) {
-    // Set the new qty - positive value is assured thanks to prev if
+  
     lineItem.qty = newQty
   }
-  // return the save() method's promise
+  
   return cart.save()
-};
+}
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order', orderSchema)

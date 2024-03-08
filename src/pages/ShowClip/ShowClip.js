@@ -9,8 +9,13 @@ export default function ShowClip({ cart, setCart }) {
 
    /*-- Event Handlers --*/
    async function handleAddToOrder(itemId) {
-    const updatedCart = await ordersAPI.addItemToCart(itemId);
-    setCart(updatedCart);
+    try {
+        const updatedCart = await ordersAPI.addItemToCart(itemId)
+        setCart(updatedCart)
+        clipping.clippingsNum -= 1
+    } catch(err) {
+        console.error(err)
+    }    
   }
 
 
