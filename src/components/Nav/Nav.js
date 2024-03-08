@@ -7,7 +7,7 @@ export default function Nav() {
         <Link to='/cart'>Cart</Link>
         <Link to='/clipping/add'>Post clipping</Link>
         <Link to='/login'>Login</Link>
-        <Link to='/signup'>Signup</Link>
+        <Link to='/sign-up'>Signup</Link>
       </div>
     )
   }

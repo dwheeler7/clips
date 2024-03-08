@@ -222,7 +222,7 @@ function Nav() {
   }, "Post clipping"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
     to: "/login"
   }, "Login"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.Link, {
-    to: "/signup"
+    to: "/sign-up"
   }, "Signup"));
 }
 
@@ -878,11 +878,6 @@ function Settings() {
 /* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -907,15 +902,20 @@ function ShowClip(_ref) {
       setCart(updatedCart);
       const updatedClippings = (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.updateLocalClippingsNum)(item._id, clippings, -1);
       setClippings(updatedClippings);
-      item.clippingsNum -= 1;
-      setClipping(_objectSpread({}, item));
+      setClipping(item);
     } catch (err) {
       console.error(err);
     }
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function getClipping(clippingID) {
-      const foundClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.showClipping)(clippingID);
+      // the issue here is that i'm pulling the clipping from the api which is overwriting the local count
+      let foundClipping;
+      if (clippings.length) {
+        foundClipping = clippings.find(obj => obj._id === clippingID);
+      } else {
+        foundClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.showClipping)(clippingID);
+      }
       setClipping(foundClipping);
     }
     if (id) {
@@ -2217,4 +2217,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.508ae231d2c373cdcc48648fc0d0aac8.js.map
+//# sourceMappingURL=App.915326c5fa198c668895be673b3ed14b.js.map

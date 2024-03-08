@@ -14,9 +14,8 @@ export default function ShowClip({ cart, setCart, clippings, setClippings }) {
         const updatedCart = await ordersAPI.addItemToCart(item._id)
         setCart(updatedCart)
         const updatedClippings = updateLocalClippingsNum(item._id, clippings, -1)
-        setClippings(updatedClippings)
-        item.clippingsNum -= 1
-        setClipping({...item})
+        setClippings(updatedClippings)        
+        setClipping(item)
     } catch(err) {
         console.error(err)
     }    
@@ -25,7 +24,12 @@ export default function ShowClip({ cart, setCart, clippings, setClippings }) {
     useEffect(() => {
         async function getClipping(clippingID) {
             // the issue here is that i'm pulling the clipping from the api which is overwriting the local count
-            const foundClipping = await showClipping(clippingID)            
+            let foundClipping
+            if (clippings.length) {
+                foundClipping = clippings.find((obj) => obj._id === clippingID)
+            } else {
+                foundClipping = await showClipping(clippingID)
+            }            
             setClipping(foundClipping)
         }
         if (id) {
