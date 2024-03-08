@@ -38,9 +38,9 @@ export default function NewOrderPage({ user, setUser }) {
     setCart(updatedCart);
   }
 
-  async function handleCheckout() {
-    await ordersAPI.checkout();
-    navigate('/orders');
+  async function handleCheckout(cartArg) {    
+    await ordersAPI.checkout(cartArg)
+    navigate('/orders')
   }
 
   return (
@@ -59,5 +59,5 @@ export default function NewOrderPage({ user, setUser }) {
         handleCheckout={handleCheckout}
       />
     </main>
-  );
+  )
 }

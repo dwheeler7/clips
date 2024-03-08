@@ -336,16 +336,13 @@ function OrderDetail(_ref) {
     handleCheckout
   } = _ref;
   if (!order) return null;
-  console.log(order);
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
     isComplete: order.isComplete,
     handleChangeQty: handleChangeQty,
     key: item._id
   }));
-  return /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
-  }, /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
   }, lineItems.length ? /*#__PURE__*/React.createElement(React.Fragment, null, lineItems, /*#__PURE__*/React.createElement("section", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
@@ -353,7 +350,7 @@ function OrderDetail(_ref) {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
   }, "TOTAL\xA0\xA0") : /*#__PURE__*/React.createElement("button", {
     className: "btn-sm",
-    onClick: handleCheckout,
+    onClick: () => handleCheckout(order),
     disabled: !lineItems.length
   }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
@@ -769,8 +766,8 @@ function NewOrderPage(_ref) {
     const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.setItemQtyInCart(itemId, newQty);
     setCart(updatedCart);
   }
-  async function handleCheckout() {
-    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.checkout();
+  async function handleCheckout(cartArg) {
+    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_5__.checkout(cartArg);
     navigate('/orders');
   }
   return /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -1222,7 +1219,8 @@ function setItemQtyInCart(itemId, newQty) {
 }
 
 // Updates the order's (cart's) isPaid property to true
-function checkout() {
+function checkout(cart) {
+  console.log('cart.....', cart);
   // Changing data on the server, so make it a POST request
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/cart/checkout"), 'POST');
 }
@@ -2217,4 +2215,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.915326c5fa198c668895be673b3ed14b.js.map
+//# sourceMappingURL=App.7657f9bb37f3a8de44302b3e89cdf082.js.map

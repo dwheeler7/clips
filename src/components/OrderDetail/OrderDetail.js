@@ -3,8 +3,7 @@ import LineItem from '../LineItem/LineItem';
 
 // Used to display the details of any order, including the cart (unpaid order)
 export default function OrderDetail({ order, handleChangeQty, handleCheckout }) {
-    if (!order) return null
-    console.log(order)
+    if (!order) return null    
 
     const lineItems = order.lineItems.map(item =>
       <LineItem
@@ -13,10 +12,10 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
         handleChangeQty={handleChangeQty}
         key={item._id}
       />
-    );
+    )
 
     return (
-      <div className={styles.OrderDetail}>
+      <div>
         <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
           {lineItems.length ?
             <>
@@ -27,7 +26,7 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
                   :
                   <button
                     className="btn-sm"
-                    onClick={handleCheckout}
+                    onClick={() => handleCheckout(order)}
                     disabled={!lineItems.length}
                   >CHECKOUT</button>
                 }
