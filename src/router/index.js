@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import routes from './routes'
 import { useState, useEffect } from 'react'
-// import styles from './AppRouter.module.scss';
+import styles from './AppRouter.module.scss';
 import { getUser } from '../utilities/users-service'
 import { getClippings } from '../utilities/clippings-service'
 import Footer from '../components/Footer/Footer'
 import Nav from '../components/Nav/Nav'
+import Container from '../components/Container/Container'
+
 const AppRouter = () => {
     const [user, setUser] = useState(() => getUser())
     const [clippings, setClippings] = useState([])
@@ -14,6 +16,7 @@ const AppRouter = () => {
         <>
             <Router>
                 <Nav />
+                <Container>
                 <Routes>
                     {user ? (
                         routes.authRoutes.map(({ Component, key, path }) => (
@@ -35,6 +38,7 @@ const AppRouter = () => {
                     )}
                     <Route path="*" element={<Navigate to={user ? "/" : "/login"} replace />} />
                 </Routes>
+                </Container>
                 <Footer cart={cart} />
                 
             </Router>
