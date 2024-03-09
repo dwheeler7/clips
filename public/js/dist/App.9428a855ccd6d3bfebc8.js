@@ -230,26 +230,14 @@ function Input(_ref) {
 function LineItem(_ref) {
   let {
     lineItem,
-    isComplete,
     handleChangeQty
   } = _ref;
   console.log(lineItem);
-  return /*#__PURE__*/React.createElement("div", {
-    className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].LineItem
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex-ctr-ctr"
-  }, lineItem.item.plant), /*#__PURE__*/React.createElement("div", {
-    className: _LineItem_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].qty,
-    style: {
-      justifyContent: isComplete && 'center'
-    }
-  }, !isComplete && /*#__PURE__*/React.createElement("button", {
-    className: "btn-xs",
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, lineItem.item.plant), /*#__PURE__*/React.createElement("button", {
     onClick: () => handleChangeQty(lineItem.item, lineItem.qty - 1)
-  }, "\u2212"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), !isComplete && /*#__PURE__*/React.createElement("button", {
-    className: "btn-xs",
+  }, "\u2212"), /*#__PURE__*/React.createElement("span", null, lineItem.qty), /*#__PURE__*/React.createElement("button", {
     onClick: () => handleChangeQty(lineItem.item, lineItem.qty + 1)
-  }, "+")));
+  }, "+"));
 }
 
 /***/ }),
@@ -268,12 +256,15 @@ function LineItem(_ref) {
 /* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
 /* harmony import */ var _components_Form_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Form/Form */ "./src/components/Form/Form.js");
 /* harmony import */ var _components_Input_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Input/Input */ "./src/components/Input/Input.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
 function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
 
 
 
@@ -304,7 +295,11 @@ function LoginForm() {
   // Removed the `disable` variable and condition since it's not used in the current implementation.
   // Ensure you define a method to handle setting the user (commented out above) if you haven't already.
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: "h1",
+    variant: "h5",
+    align: "center"
+  }, "Login"), /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: "email",
@@ -323,7 +318,11 @@ function LoginForm() {
   }), /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     type: "submit",
     value: "Login"
-  })), error && /*#__PURE__*/React.createElement("p", null, error));
+  })), error && /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "body1",
+    align: "center",
+    color: "#DF4625"
+  }, error));
 }
 
 /***/ }),
@@ -422,14 +421,14 @@ function Nav(_ref) {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/img/logo_new.svg",
     className: _Nav_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].nav__logo
-  }))), /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }))), /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, user ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_2__["default"], {
     user: user,
     setUser: setUser
   }), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
     to: "/clippings/add",
     variant: "contained"
-  }, "Post some clippings"), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "Post clippings")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
     to: "/login",
     variant: "outlined"
@@ -437,7 +436,7 @@ function Nav(_ref) {
     component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
     to: "/sign-up",
     variant: "contained"
-  }, "Sign up")));
+  }, "Sign up"))));
 }
 
 /***/ }),
@@ -479,12 +478,14 @@ function NavItem(_ref) {
 /* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _components_Form_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Form/Form */ "./src/components/Form/Form.js");
 /* harmony import */ var _components_Input_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Input/Input */ "./src/components/Input/Input.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
 function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
 
 
 
@@ -525,7 +526,11 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     });
   }
   render() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      component: "h1",
+      variant: "h5",
+      align: "center"
+    }, "Post your plant clippings"), /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onSubmit: this.handleSubmit
     }, /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
       type: "text",
@@ -571,7 +576,11 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
 /* harmony import */ var _LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LineItem/LineItem */ "./src/components/LineItem/LineItem.js");
 /* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
@@ -591,7 +600,6 @@ function OrderDetail(_ref) {
   };
   const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     lineItem: item,
-    isComplete: order.isComplete,
     handleChangeQty: handleChangeQty,
     key: item._id
   }));
@@ -599,14 +607,14 @@ function OrderDetail(_ref) {
     className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
   }, lineItems.length ? /*#__PURE__*/React.createElement(React.Fragment, null, lineItems, /*#__PURE__*/React.createElement("section", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
-  }, order.isComplete ? /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
-  }, "TOTAL\xA0\xA0") : /*#__PURE__*/React.createElement("button", {
-    className: "btn-sm",
+  }, /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     onClick: () => handleCheckout(order),
-    disabled: !lineItems.length
-  }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty))) : /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
+    disabled: !lineItems.length,
+    variant: "contained"
+  }, "Checkout"), /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "body2"
+  }, "Total clippings: ", order.totalQty))) : /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "body1"
   }, "Your cart is empty.")));
 }
 
@@ -657,7 +665,9 @@ function OrderList(_ref) {
 /* harmony export */   "default": () => (/* binding */ OrderListItem)
 /* harmony export */ });
 /* harmony import */ var _OrderListItem_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderListItem.module.scss */ "./src/components/OrderListItem/OrderListItem.module.scss");
+/* harmony import */ var _mui_material_Divider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material/Divider */ "./node_modules/@mui/material/Divider/Divider.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 function OrderListItem(_ref) {
   let {
@@ -676,7 +686,7 @@ function OrderListItem(_ref) {
     className: "align-rt"
   }, /*#__PURE__*/React.createElement("div", {
     className: "smaller"
-  }, order.totalQty, " Item", order.totalQty > 1 ? 's' : '')));
+  }, order.totalQty, " Item", order.totalQty > 1 ? 's' : '')), /*#__PURE__*/React.createElement(_mui_material_Divider__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 }
 
 /***/ }),
@@ -695,12 +705,16 @@ function OrderListItem(_ref) {
 /* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
 /* harmony import */ var _components_Form_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Form/Form */ "./src/components/Form/Form.js");
 /* harmony import */ var _components_Input_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Input/Input */ "./src/components/Input/Input.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
 function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
 
 
 
@@ -712,7 +726,6 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       firstName: '',
       lastName: '',
       email: '',
-      isClipper: false,
       password: '',
       confirm: '',
       error: ''
@@ -740,7 +753,11 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   }
   render() {
     const disable = this.state.password !== this.state.confirm;
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      component: "h1",
+      variant: "h5",
+      align: "center"
+    }, "Sign up"), /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onSubmit: this.handleSubmit
     }, /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
       type: "text",
@@ -777,14 +794,20 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       value: this.state.confirm,
       onChange: this.handleChange,
       required: true
-    }), /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       type: "submit",
-      name: "submit",
-      value: "Sign up",
+      fullWidth: true,
+      variant: "contained",
+      sx: {
+        mt: 3,
+        mb: 2
+      },
       disabled: disable
-    })), /*#__PURE__*/React.createElement("p", {
-      className: "error-message"
-    }, "\xA0", this.state.error));
+    }, "Sign Up")), this.state.error && /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      variant: "body1",
+      align: "center",
+      color: "#DF4625"
+    }, this.state.error));
   }
 }
 
@@ -854,7 +877,9 @@ root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__
 /* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
 /* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 
@@ -866,20 +891,24 @@ function Cart(_ref) {
   } = _ref;
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
   const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   async function handleChangeQty(itemId, newQty) {
     try {
       const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.setItemQtyInCart(itemId, newQty);
       setCart(updatedCart);
     } catch (err) {
       console.error(err);
+      setError('');
     }
   }
   async function handleCheckout() {
     try {
       await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_3__.checkout();
+      setError('');
       navigate('/orders');
     } catch (err) {
       console.error("Checkout failed:", err);
+      setError(err);
     }
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -898,7 +927,15 @@ function Cart(_ref) {
   if (isLoading) {
     return /*#__PURE__*/React.createElement("div", null, "Loading cart...");
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Cart"), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "h1"
+  }, "Cart"), error && /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "body1",
+    align: "center",
+    style: {
+      color: "#DF4625"
+    }
+  }, error), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_1__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
     handleCheckout: handleCheckout
@@ -920,7 +957,9 @@ function Cart(_ref) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Clipping_Clipping__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Clipping/Clipping */ "./src/components/Clipping/Clipping.js");
 /* harmony import */ var _components_ClippingList_ClippingList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ClippingList/ClippingList */ "./src/components/ClippingList/ClippingList.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 
 
@@ -932,7 +971,11 @@ const Home = _ref => {
     clippings,
     user
   } = _ref;
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Plant Clippings"), user && /*#__PURE__*/React.createElement("p", null, "Welcome, ", user.firstName, "!"), /*#__PURE__*/React.createElement(_components_ClippingList_ClippingList__WEBPACK_IMPORTED_MODULE_2__["default"], null, clippings.map(clipping => /*#__PURE__*/React.createElement(_components_Clipping_Clipping__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    component: "h1",
+    variant: "h5",
+    align: "center"
+  }, "Hey ", user.firstName, ", how are you? Here are some plant clippings up for grabs in Seattle."), /*#__PURE__*/React.createElement(_components_ClippingList_ClippingList__WEBPACK_IMPORTED_MODULE_2__["default"], null, clippings.map(clipping => /*#__PURE__*/React.createElement(_components_Clipping_Clipping__WEBPACK_IMPORTED_MODULE_1__["default"], {
     clipping: clipping,
     key: clipping._id
   }))));
@@ -1148,7 +1191,11 @@ function Settings() {
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/clippings-service */ "./src/utilities/clippings-service.js");
 /* harmony import */ var _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/orders-api */ "./src/utilities/orders-api.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
@@ -1195,10 +1242,17 @@ function ShowClip(_ref) {
       getClipping(id);
     }
   }, [id]);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Clipping"), clipping && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, clipping && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "h1"
+  }, clipping.plant), /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "subtitle1"
+  }, clipping.description), /*#__PURE__*/React.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "body1"
+  }, "Available clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onClick: () => handleAddToOrder(clipping),
-    disabled: !clipping.clippingsNum
-  }, "ADD")));
+    disabled: !clipping.clippingsNum,
+    variant: "contained"
+  }, "Add to cart")));
 }
 
 /***/ }),
@@ -1530,6 +1584,7 @@ function getOrderHistory() {
 async function sendRequest(url) {
   let method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
   let payload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  console.log('sending request');
   const options = {
     method
   };
@@ -1571,6 +1626,7 @@ function signUp(userData) {
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])(BASE_URL, 'POST', userData);
 }
 function login(credentials) {
+  console.log('credentials', credentials);
   return (0,_send_request__WEBPACK_IMPORTED_MODULE_0__["default"])("".concat(BASE_URL, "/login"), 'POST', credentials);
 }
 
@@ -2516,11 +2572,8 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /*!******************************************************!*\
   !*** ./src/components/LineItem/LineItem.module.scss ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
@@ -2560,7 +2613,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 
-       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+       /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_LineItem_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -3205,7 +3258,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_mui_icons-material_AddShoppingCart_js-node_modules_mui_material_Button_B-6a8f79"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_mui_icons-material_AddShoppingCart_js-node_modules_mui_material_Button_B-6cf34c"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

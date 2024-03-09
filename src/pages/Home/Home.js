@@ -4,13 +4,13 @@ import * as ordersAPI from '../../utilities/orders-api'
 import { Link, useNavigate } from 'react-router-dom'
 import Clipping from '../../components/Clipping/Clipping'
 import ClippingList from '../../components/ClippingList/ClippingList'
+import Typography from '@mui/material/Typography';
 
 const Home = ({ clippings, user }) => {
   
   return (
     <div>
-      <h1>Plant Clippings</h1>      
-      {user && <p>Welcome, {user.firstName}!</p>}   
+      <Typography component="h1" variant="h5" align="center" >Hey {user.firstName}, how are you? Here are some plant clippings up for grabs in Seattle.</Typography>
       <ClippingList>
         {clippings.map((clipping) => (          
           <Clipping clipping={clipping} key={clipping._id} />                              

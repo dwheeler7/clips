@@ -2,6 +2,7 @@ import { Component } from "react"
 import { addClipping } from '../../utilities/clippings-service'
 import Form from '../../components/Form/Form'
 import Input from '../../components/Input/Input'
+import Typography from '@mui/material/Typography';
 
 export default class NewClippingForm extends Component {
     state = {
@@ -38,6 +39,7 @@ handleSubmit = async (evt) => {
 render() {
   return (
     <>
+    <Typography component="h1" variant="h5" align="center" >Post your plant clippings</Typography>
     <Form onSubmit={this.handleSubmit}>
         <Input
           type="text"

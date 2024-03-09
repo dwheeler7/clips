@@ -2,6 +2,8 @@ import styles from './OrderDetail.module.scss';
 import LineItem from '../LineItem/LineItem';
 import * as ordersAPI from '../../utilities/orders-api'
 import { Link, useNavigate } from 'react-router-dom'
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button'
 
 // Used to display the details of any order, including the cart (unpaid order)
 export default function OrderDetail({ order, handleChangeQty }) {
@@ -13,10 +15,9 @@ export default function OrderDetail({ order, handleChangeQty }) {
       navigate('/orders')
     }
 
-    const lineItems = order.lineItems.map(item =>
+    const lineItems = order.lineItems.map(item =>      
       <LineItem
         lineItem={item}
-        isComplete={order.isComplete}
         handleChangeQty={handleChangeQty}
         key={item._id}
       />
@@ -28,21 +29,18 @@ export default function OrderDetail({ order, handleChangeQty }) {
           {lineItems.length ?
             <>
               {lineItems}
-              <section className={styles.total}>
-                {order.isComplete ?
-                  <span className={styles.right}>TOTAL&nbsp;&nbsp;</span>
-                  :
-                  <button
-                    className="btn-sm"
+              <section className={styles.total}>                  
+                  <Button                 
                     onClick={() => handleCheckout(order)}
                     disabled={!lineItems.length}
-                  >CHECKOUT</button>
-                }
-                <span>{order.totalQty}</span>                
+                    variant="contained"
+                  >Checkout</Button>
+                
+                <Typography variant="body2">Total clippings: {order.totalQty}</Typography>              
               </section>
             </>
             :
-            <div className={styles.hungry}>Your cart is empty.</div>
+            <Typography variant="body1">Your cart is empty.</Typography>
           }
         </div>
       </div>

@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { showClipping, updateLocalClippingsNum } from '../../utilities/clippings-service'
 import * as ordersAPI from '../../utilities/orders-api'
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button'
+
+
 
 export default function ShowClip({ cart, setCart, clippings, setClippings }) {
     console.log(clippings)
@@ -40,14 +44,13 @@ export default function ShowClip({ cart, setCart, clippings, setClippings }) {
     }, [id])
        
     return (
-        <>
-        <h1>Clipping</h1>
+        <>        
         {clipping && (
             <div>
-                <h2>{clipping.plant}</h2>
-                <p>Number of Clippings: {clipping.clippingsNum}</p>
-                <p>Description: {clipping.description || 'No description available.'}</p>   
-                <button onClick={() => handleAddToOrder(clipping)} disabled={!clipping.clippingsNum}>ADD</button>
+                <Typography variant="h1">{clipping.plant}</Typography>
+                <Typography variant="subtitle1">{clipping.description}</Typography>
+                <Typography variant="body1">Available clippings: {clipping.clippingsNum}</Typography>
+                <Button onClick={() => handleAddToOrder(clipping)} disabled={!clipping.clippingsNum} variant="contained">Add to cart</Button>                          
             </div>          
         )}          
         </>

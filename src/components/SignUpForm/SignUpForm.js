@@ -2,13 +2,15 @@ import { Component } from "react"
 import { signUp } from '../../utilities/users-service'
 import Form from '../../components/Form/Form'
 import Input from '../../components/Input/Input'
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
 
 export default class SignUpForm extends Component {
     state = {
         firstName: '',
         lastName: '',
-        email: '',
-        isClipper: false,
+        email: '',        
         password: '',
         confirm: '',
         error: ''
@@ -38,6 +40,7 @@ render() {
   const disable = this.state.password !== this.state.confirm
   return (
     <>
+    <Typography component="h1" variant="h5" align="center" >Sign up</Typography>
     <Form onSubmit={this.handleSubmit}>
       <Input
           type="text"
@@ -79,14 +82,17 @@ render() {
           onChange={this.handleChange}
           required={true}
         />
-        <Input
-          type="submit"
-          name="submit"
-          value="Sign up"          
-          disabled={disable}          
-        />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            disabled={disable}
+          >
+            Sign Up
+          </Button>
     </Form>    
-    <p className="error-message">&nbsp;{this.state.error}</p>
+    {this.state.error && <Typography variant="body1" align="center" color="#DF4625">{this.state.error}</Typography>}
     </>
   )
 }

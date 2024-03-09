@@ -2,6 +2,8 @@ import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 export default function LoginForm() {
   const [credentials, setCredentials] = useState({
@@ -32,6 +34,7 @@ export default function LoginForm() {
 
   return (
     <>
+      <Typography component="h1" variant="h5" align="center" >Login</Typography>
       <Form onSubmit={handleSubmit}>
         <Input
           type="email"
@@ -54,7 +57,7 @@ export default function LoginForm() {
           value="Login"
         />
       </Form>
-      {error && <p>{error}</p>}
+      {error && <Typography variant="body1" align="center" color="#DF4625">{error}</Typography>}
     </>
   );
 }

@@ -10,6 +10,7 @@ const checkToken = (req, res) => {
 const dataController = {
     async create(req, res, next) {
         try {
+            
             const user = await User.create(req.body)
             const token = createJWT(user)
             res.locals.data.user = user
@@ -19,19 +20,19 @@ const dataController = {
             res.status(400).json(err)
         }
     },
-    async login(req, res, next) {
+    async login (req, res, next) {
         try {
-            const user = User.findOne({ email: req.body.email })
-            if (!user) throw new Error('cannot find user by email')
-            const match = await bcrypt.compare(req.body.password, user.password)
-            if (!match) throw new Error('passwords do not match')
-            res.locals.data.user = user
-            res.locals.data.token = createJWT(user)
-            next()
-        } catch(err) {
-            res.status(400).json(err)
+          const user = await User.findOne({ email: req.body.email })
+          if (!user) throw new Error()
+          const match = await bcrypt.compare(req.body.password, user.password)
+          if (!match) throw new Error()
+          res.locals.data.user = user
+          res.locals.data.token = createJWT(user)
+          next()
+        } catch {
+          res.status(400).json('Bad Credentials')
         }
-    }   
+      }
 }
 
 const apiController = {

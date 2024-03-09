@@ -1,4 +1,5 @@
 import styles from './OrderListItem.module.scss';
+import Divider from '@mui/material/Divider';
 
 export default function OrderListItem({ order, isSelected, handleSelectOrder }) {
 return (
@@ -10,6 +11,7 @@ return (
     <div className="align-rt">      
       <div className="smaller">{order.totalQty} Item{order.totalQty > 1 ? 's' : ''}</div>
     </div>
+    <Divider />
   </div>
 );
 }
