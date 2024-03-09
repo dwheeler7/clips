@@ -19,7 +19,7 @@ const userSchema = new Schema ({
         required: true,
         trim: true
     },
-    isClipper: { type: Boolean, required: true, default: false }
+    isClipper: { type: Boolean, default: true }
     }, {
     timestamps: true,
     toJSON: {

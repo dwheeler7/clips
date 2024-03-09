@@ -51,7 +51,8 @@ async function update (req, res) {
 async function create (req, res) {
     try {        
         req.body.clipper = req.user._id        
-        if(!req.user.isClipper) throw new Error('Must be clipper to add a clipping')
+        // removing roles from scope, setting everyone to clipper
+        // if(!req.user.isClipper) throw new Error('Must be clipper to add a clipping')
         const clipping = await Clipping.create(req.body)        
         const user = await User.findById(req.user._id)
         user.clippings.push(clipping._id)
