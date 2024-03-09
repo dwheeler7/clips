@@ -6,58 +6,58 @@ import Settings from '../pages/Settings/Settings'
 import SignUp from '../pages/SignUp/SignUp'
 import ShowClip from '../pages/ShowClip/ShowClip'
 import Cart from '../pages/Cart/Cart'
+import Home from '../pages/Home/Home'
 
-
-const routes = [
+const routes = {
+    authRoutes : [
+        {
+            Component: Home,
+            key: 'Home',
+            path: '/'            
+        },
         {
             Component: NewClip,
             key: 'NewClip',
-            path: '/clippings/add',
-            gated: true
+            path: '/clippings/add'            
         },
         {
             Component: NewOrder,
             key: 'NewOrder',
-            path: '/orders/new',
-            gated: true
+            path: '/orders/new'            
         },
         {
             Component: OrderHistory,
             key: 'OrderHistory',
-            path: '/orders',
-            gated: true
+            path: '/orders'            
         },
         {
             Component: Settings,
             key: 'Settings',
-            path: '/settings',
-            gated: true
-        },
-        {
-            Component: Login,
-            key: 'Login',
-            path: '/login',
-            gated: false
-        },
-        {
-            Component: SignUp,
-            key: 'SignUp',
-            path: '/sign-up',
-            gated: false
+            path: '/settings'            
         },
         {
             Component: ShowClip,
             key: 'ShowClip',
-            path: '/clipping/:id',
-            gated: true
+            path: '/clipping/:id'            
         },
         {
             Component: Cart,
             key: 'Cart',
-            path: '/cart',
-            gated: true
+            path: '/cart'            
         }
-
+    ],
+    unauthRoutes : [
+        {
+            Component: Login,
+            key: 'Login',
+            path: '/login'            
+        },
+        {
+            Component: SignUp,
+            key: 'SignUp',
+            path: '/sign-up'            
+        }
     ]
+}
 
 export default routes

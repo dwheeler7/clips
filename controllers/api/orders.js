@@ -65,8 +65,7 @@ async function checkout(req, res) {
     lineItems.forEach((item, idx) => {
       const updateOrDeleteClipping = async item => {
         try {
-          const sum = itemSums[idx]
-          console.log('sum', sum)
+          const sum = itemSums[idx]          
         if (sum) {          
           await Clipping.findOneAndUpdate({_id : item.item}, {clippingsNum: sum}, { new: true })          
         } else {

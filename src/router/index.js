@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 // import styles from './AppRouter.module.scss';
 import { getUser } from '../utilities/users-service'
 import { getClippings } from '../utilities/clippings-service'
-import Home from '../pages/Home/Home'
 import Footer from '../components/Footer/Footer'
 import Nav from '../components/Nav/Nav'
 
@@ -12,40 +11,35 @@ const AppRouter = () => {
     const [user, setUser] = useState(() => getUser())
     const [clippings, setClippings] = useState([])
     const [cart, setCart] = useState([])
-
-    useEffect(() => {        
-        const fetchClippings = async () => {
-            try {
-                const clippings = await getClippings()
-                setClippings(clippings)
-            } catch (error) {
-                console.error("Failed to fetch clippings:", error)
-            }
-        }
-        fetchClippings()
-    }, [])    
-
     return (
-        
-        <main>
-            
-            <Router>            
+        <>
+            <Router>
                 <Nav />
                 <Routes>
-                    <Route path="/" key='Home' element={<Home page='Home' user={user} setUser={setUser} clippings={clippings} setClippings={setClippings} cart={cart} setCart={setCart}/>} />
-                    {routes.map(({ Component, key, path, gated }) => {
-                        if (gated === !!user) {
-                            return <Route key={key} path={path} element={<Component page={key} user={user} setUser={setUser} clippings={clippings} setClippings={setClippings} cart={cart} setCart={setCart} />} />
-                        } else {
-                            return <Route key={key} path={path} element={<Navigate replace to="/" />} />
-                        }
-                    })}
-                </Routes> 
-                <Footer cart={cart} />       
+                    {user ? (
+                        routes.authRoutes.map(({ Component, key, path }) => (
+                            <Route key={key} path={path} element={
+                                <Component 
+                                    user={user} 
+                                    setUser={setUser} 
+                                    clippings={clippings} 
+                                    setClippings={setClippings} 
+                                    cart={cart} 
+                                    setCart={setCart} 
+                                />} 
+                            />
+                        ))
+                    ) : (
+                        routes.unauthRoutes.map(({ Component, key, path }) => (
+                            <Route key={key} path={path} element={<Component user={user} setUser={setUser} />} />
+                        ))
+                    )}
+                    <Route path="*" element={<Navigate to={user ? "/" : "/login"} replace />} />
+                </Routes>
+                <Footer cart={cart} />
             </Router>
-        </main>
-        
-    );
-};
+        </>
+    )
+}
 
-export default AppRouter;
+export default AppRouter

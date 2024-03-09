@@ -4,6 +4,17 @@ import * as ordersAPI from '../../utilities/orders-api'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Home = ({ clippings, user }) => {
+  useEffect(() => {        
+    const fetchClippings = async () => {
+        try {
+            const clippings = await getClippings()
+            setClippings(clippings)
+        } catch (error) {
+            console.error("Failed to fetch clippings:", error)
+        }
+    }
+    fetchClippings()
+}, [])    
     
   return (
     <div>
