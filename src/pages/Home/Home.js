@@ -10,7 +10,7 @@ const Home = ({ clippings, user }) => {
   
   return (
     <div>
-      <Typography component="h1" variant="h5" align="center" >Hey {user.firstName}, how are you? Here are some plant clippings up for grabs in Seattle.</Typography>
+      <Typography marginBottom="2rem" component="h1" variant="h5" align="center" >Hey {user.firstName}, how are you? Here are some plant clippings up for grabs in Seattle.</Typography>
       <ClippingList>
         {clippings.map((clipping) => (          
           <Clipping clipping={clipping} key={clipping._id} />                              

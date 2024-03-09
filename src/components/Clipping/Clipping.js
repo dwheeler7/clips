@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export default function Clipping({clipping}) {
     return (
-      <Card sx={{ maxWidth: 350, marginBottom: "2rem"  }}>        
+      <Card sx={{ maxWidth: "100%", marginBottom: "2rem"  }}>        
           <CardMedia
             component="img"
             height="140"
