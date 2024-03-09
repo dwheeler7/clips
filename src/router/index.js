@@ -30,7 +30,7 @@ const AppRouter = () => {
     return (
         <>
             <Router>
-                <Nav />
+                <Nav user={user} setUser={setUser}/>
                 <Container>
                     <Routes>
                         {user ? (
@@ -54,7 +54,7 @@ const AppRouter = () => {
                         <Route path="*" element={<Navigate to={user ? "/" : "/login"} replace />} />
                     </Routes>
                 </Container>
-                <Footer cart={cart} />
+                <Footer user={user} />
             </Router>
         </>
     )

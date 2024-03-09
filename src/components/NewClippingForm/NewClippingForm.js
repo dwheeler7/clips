@@ -7,7 +7,9 @@ export default class NewClippingForm extends Component {
     state = {
         plant: '',
         clippingsNum: 0, 
-        description: ''
+        description: '',
+        error: '', // Make sure this is declared to handle errors
+        redirect: false
     }
 
 handleChange = (evt) => {
@@ -19,14 +21,17 @@ handleChange = (evt) => {
 }
 
 handleSubmit = async (evt) => {
-  evt.preventDefault()
+  evt.preventDefault();
   try {
-    const formData = {...this.state}
-    formData.clippingsNum = parseInt(formData.clippingsNum, 10)    
-    delete formData.error
-    await addClipping(formData)
-  } catch {
-    this.setState({ error: 'Form Submission Failed - Try Again' })
+      const formData = {...this.state};
+      delete formData.error; // Error and redirect should not be part of formData
+      delete formData.redirect;
+      const newClipping = await addClipping(formData); // Assume this returns the newly added clipping
+      // Redirect using navigate function passed as a prop or using withRouter
+      this.props.navigate('/'); // If using React Router v6 and navigate is passed as a prop
+      // this.props.history.push('/'); // If using withRouter in React Router v5
+  } catch (error) {
+      this.setState({ error: 'Form Submission Failed - Try Again' });
   }
 }
 

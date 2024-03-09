@@ -2,6 +2,88 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/Clipping/Clipping.js":
+/*!*********************************************!*\
+  !*** ./src/components/Clipping/Clipping.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Clipping)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_material_Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material/Card */ "./node_modules/@mui/material/Card/Card.js");
+/* harmony import */ var _mui_material_CardContent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/CardContent */ "./node_modules/@mui/material/CardContent/CardContent.js");
+/* harmony import */ var _mui_material_CardMedia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/CardMedia */ "./node_modules/@mui/material/CardMedia/CardMedia.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CardActions/CardActions.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+
+
+
+
+
+
+
+function Clipping(_ref) {
+  let {
+    clipping
+  } = _ref;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    sx: {
+      maxWidth: 350,
+      marginBottom: "2rem"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_CardMedia__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    component: "img",
+    height: "140",
+    image: "/img/monserra.jpeg",
+    alt: "green iguana"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_CardContent__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    gutterBottom: true,
+    variant: "h5",
+    component: "div"
+  }, clipping.plant), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "body2",
+    color: "text.secondary"
+  }, clipping.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "body2",
+    color: "text.secondary"
+  }, clipping.clippingsNum)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    size: "small",
+    color: "primary",
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link,
+    to: "/clipping/".concat(clipping._id)
+  }, "Get a clipping")));
+}
+
+/***/ }),
+
+/***/ "./src/components/ClippingList/ClippingList.js":
+/*!*****************************************************!*\
+  !*** ./src/components/ClippingList/ClippingList.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ClippingList)
+/* harmony export */ });
+/* harmony import */ var _ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClippingList.module.scss */ "./src/components/ClippingList/ClippingList.module.scss");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+function ClippingList(_ref) {
+  let {
+    children
+  } = _ref;
+  return /*#__PURE__*/React.createElement("div", {
+    className: _ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].list
+  }, children);
+}
+
+/***/ }),
+
 /***/ "./src/components/Container/Container.js":
 /*!***********************************************!*\
   !*** ./src/components/Container/Container.js ***!
@@ -37,25 +119,33 @@ const Container = _ref => {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _Footer_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.module.scss */ "./src/components/Footer/Footer.module.scss");
+/* harmony import */ var _mui_icons_material_AddShoppingCart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/icons-material/AddShoppingCart */ "./node_modules/@mui/icons-material/AddShoppingCart.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
 const Footer = _ref => {
   let {
-    cart
+    user
   } = _ref;
   const [showCart, setShowCart] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    setShowCart(cart ? true : false);
-  }, [cart]);
+    setShowCart(user ? true : false);
+  }, [user]);
   return /*#__PURE__*/React.createElement("footer", {
     className: _Footer_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].footer
-  }, showCart ? /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/cart"
-  }, "Cart") : '');
+  }, showCart ? /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    href: "/cart",
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
+    to: "/cart",
+    variant: "outlined",
+    startIcon: /*#__PURE__*/React.createElement(_mui_icons_material_AddShoppingCart__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  }, "View cart") : '');
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
 
@@ -310,29 +400,44 @@ function MenuListItem(_ref) {
 /* harmony export */   "default": () => (/* binding */ Nav)
 /* harmony export */ });
 /* harmony import */ var _Nav_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nav.module.scss */ "./src/components/Nav/Nav.module.scss");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../NavItem/NavItem */ "./src/components/NavItem/NavItem.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
 function Nav(_ref) {
   let {
-    user
+    user,
+    setUser
   } = _ref;
   return /*#__PURE__*/React.createElement("div", {
     className: _Nav_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].nav
-  }, /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/"
-  }, "Home"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/cart"
-  }, "Cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/clippings/add"
-  }, "Post clipping")), /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/login"
-  }, "Login"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/sign-up"
-  }, "Signup")));
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "/img/logo_new.svg",
+    className: _Nav_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].nav__logo
+  }))), /*#__PURE__*/React.createElement(_NavItem_NavItem__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    user: user,
+    setUser: setUser
+  }), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
+    to: "/clippings/add",
+    variant: "contained"
+  }, "Post some clippings"), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
+    to: "/login",
+    variant: "outlined"
+  }, "Login"), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link,
+    to: "/sign-up",
+    variant: "contained"
+  }, "Sign up")));
 }
 
 /***/ }),
@@ -390,7 +495,10 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     _defineProperty(this, "state", {
       plant: '',
       clippingsNum: 0,
-      description: ''
+      description: '',
+      error: '',
+      // Make sure this is declared to handle errors
+      redirect: false
     });
     _defineProperty(this, "handleChange", evt => {
       const value = evt.target.name === 'clippingsNum' ? parseInt(evt.target.value, 10) : evt.target.value;
@@ -403,10 +511,13 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       evt.preventDefault();
       try {
         const formData = _objectSpread({}, this.state);
-        formData.clippingsNum = parseInt(formData.clippingsNum, 10);
-        delete formData.error;
-        await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.addClipping)(formData);
-      } catch (_unused) {
+        delete formData.error; // Error and redirect should not be part of formData
+        delete formData.redirect;
+        const newClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.addClipping)(formData); // Assume this returns the newly added clipping
+        // Redirect using navigate function passed as a prop or using withRouter
+        this.props.navigate('/'); // If using React Router v6 and navigate is passed as a prop
+        // this.props.history.push('/'); // If using withRouter in React Router v5
+      } catch (error) {
         this.setState({
           error: 'Form Submission Failed - Try Again'
         });
@@ -414,7 +525,7 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     });
   }
   render() {
-    return /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_Form_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onSubmit: this.handleSubmit
     }, /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
       type: "text",
@@ -441,7 +552,7 @@ class NewClippingForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       type: "submit",
       name: "submit",
       value: "Post clippings"
-    }));
+    })));
   }
 }
 
@@ -607,17 +718,10 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       error: ''
     });
     _defineProperty(this, "handleChange", evt => {
-      if (evt.target.type === 'checkbox') {
-        this.setState({
-          [evt.target.name]: evt.target.checked,
-          error: ''
-        });
-      } else {
-        this.setState({
-          [evt.target.name]: evt.target.value,
-          error: ''
-        });
-      }
+      this.setState({
+        [evt.target.name]: evt.target.value,
+        error: ''
+      });
     });
     _defineProperty(this, "handleSubmit", async evt => {
       evt.preventDefault();
@@ -660,10 +764,6 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       onChange: this.handleChange,
       required: true
     }), /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      type: "checkbox",
-      name: "isClipper",
-      onChange: this.handleChange
-    }), /*#__PURE__*/React.createElement(_components_Input_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
       type: "password",
       name: "password",
       placeholder: "Password",
@@ -686,6 +786,37 @@ class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
       className: "error-message"
     }, "\xA0", this.state.error));
   }
+}
+
+/***/ }),
+
+/***/ "./src/components/UserLogOut/UserLogOut.js":
+/*!*************************************************!*\
+  !*** ./src/components/UserLogOut/UserLogOut.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UserLogOut)
+/* harmony export */ });
+/* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function UserLogOut(_ref) {
+  let {
+    user,
+    setUser
+  } = _ref;
+  function handleLogOut() {
+    (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_0__.logOut)();
+    setUser(null);
+  }
+  return /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onClick: handleLogOut,
+    variant: "outlined"
+  }, "Log out");
 }
 
 /***/ }),
@@ -787,8 +918,11 @@ function Cart(_ref) {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _components_Clipping_Clipping__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Clipping/Clipping */ "./src/components/Clipping/Clipping.js");
+/* harmony import */ var _components_ClippingList_ClippingList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ClippingList/ClippingList */ "./src/components/ClippingList/ClippingList.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 
 
 
@@ -798,11 +932,10 @@ const Home = _ref => {
     clippings,
     user
   } = _ref;
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Plant Clippings"), user && /*#__PURE__*/React.createElement("p", null, "Welcome, ", user.firstName, "!"), /*#__PURE__*/React.createElement("ul", null, clippings.map((clipping, index) => /*#__PURE__*/React.createElement("li", {
-    key: index
-  }, /*#__PURE__*/React.createElement("h2", null, clipping.plant), /*#__PURE__*/React.createElement("p", null, "Number of Clippings: ", clipping.clippingsNum), /*#__PURE__*/React.createElement("p", null, "Description: ", clipping.description || 'No description available.'), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/clipping/".concat(clipping._id)
-  }, "Learn more")))));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Plant Clippings"), user && /*#__PURE__*/React.createElement("p", null, "Welcome, ", user.firstName, "!"), /*#__PURE__*/React.createElement(_components_ClippingList_ClippingList__WEBPACK_IMPORTED_MODULE_2__["default"], null, clippings.map(clipping => /*#__PURE__*/React.createElement(_components_Clipping_Clipping__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    clipping: clipping,
+    key: clipping._id
+  }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
@@ -846,11 +979,16 @@ function Login(_ref) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_NewClippingForm_NewClippingForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/NewClippingForm/NewClippingForm */ "./src/components/NewClippingForm/NewClippingForm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
+
 function NewClip() {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_components_NewClippingForm_NewClippingForm__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useNavigate)();
+  return /*#__PURE__*/React.createElement(_components_NewClippingForm_NewClippingForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    navigate: navigate
+  });
 }
 
 /***/ }),
@@ -1022,6 +1160,7 @@ function ShowClip(_ref) {
     clippings,
     setClippings
   } = _ref;
+  console.log(clippings);
   const [clipping, setClipping] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const {
     id
@@ -1033,20 +1172,21 @@ function ShowClip(_ref) {
       if (!item.clippingsNum) throw new Error('There are not more clippings left');
       const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_2__.addItemToCart(item._id);
       setCart(updatedCart);
-      const updatedClippings = (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.updateLocalClippingsNum)(item._id, clippings, -1);
-      setClippings(updatedClippings);
-      setClipping(item);
+      const updated = (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.updateLocalClippingsNum)(item._id, clippings, -1);
+      setClippings(updated.clippings);
+      setClipping(updated.clipping);
     } catch (err) {
       console.error(err);
     }
   }
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function getClipping(clippingID) {
-      // the issue here is that i'm pulling the clipping from the api which is overwriting the local count
       let foundClipping;
       if (clippings.length) {
+        console.log('should be pulling from local');
         foundClipping = clippings.find(obj => obj._id === clippingID);
       } else {
+        console.log('alas it is not');
         foundClipping = await (0,_utilities_clippings_service__WEBPACK_IMPORTED_MODULE_3__.showClipping)(clippingID);
       }
       setClipping(foundClipping);
@@ -1137,7 +1277,10 @@ const AppRouter = () => {
     }
   }, [user]); // Depend on `user` to re-run the effect when it changes
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, null, /*#__PURE__*/React.createElement(_components_Nav_Nav__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/React.createElement(_components_Container_Container__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, user ? _routes__WEBPACK_IMPORTED_MODULE_0__["default"].authRoutes.map(_ref => {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, null, /*#__PURE__*/React.createElement(_components_Nav_Nav__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    user: user,
+    setUser: setUser
+  }), /*#__PURE__*/React.createElement(_components_Container_Container__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, user ? _routes__WEBPACK_IMPORTED_MODULE_0__["default"].authRoutes.map(_ref => {
     let {
       Component,
       key,
@@ -1176,7 +1319,7 @@ const AppRouter = () => {
       replace: true
     })
   }))), /*#__PURE__*/React.createElement(_components_Footer_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    cart: cart
+    user: user
   })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AppRouter);
@@ -1306,9 +1449,12 @@ async function showClipping(clippingId) {
   return clipping;
 }
 function updateLocalClippingsNum(clippingId, clippings, increment) {
-  console.log('clippings', clippings);
-  const clippingIdx = clippings.findIndex(obj => obj._id === clippingId);
-  clippings[clippingIdx].clippingsNum += increment;
+  const clipping = clippings.find(obj => obj._id === clippingId);
+  clipping.clippingsNum += increment;
+  return {
+    clippings,
+    clipping
+  };
   return clippings;
 }
 
@@ -1439,10 +1585,10 @@ function login(credentials) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getToken: () => (/* binding */ getToken),
 /* harmony export */   getUser: () => (/* binding */ getUser),
+/* harmony export */   logOut: () => (/* binding */ logOut),
 /* harmony export */   login: () => (/* binding */ login),
 /* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
-/* unused harmony export logOut */
 /* harmony import */ var _users_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-api */ "./src/utilities/users-api.js");
 
 async function signUp(userData) {
@@ -1476,6 +1622,37 @@ function logOut() {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/ClippingList/ClippingList.module.scss":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/ClippingList/ClippingList.module.scss ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.fQdrVw5k1jtLNr5KG6V0 {
+  display: flex;
+  flex-direction: column;
+}`, "",{"version":3,"sources":["webpack://./src/components/ClippingList/ClippingList.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;AACJ","sourcesContent":[".list {\n    display: flex;\n    flex-direction: column;\n}"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"list": `fQdrVw5k1jtLNr5KG6V0`
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/Container/Container.module.scss":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/Container/Container.module.scss ***!
@@ -1496,10 +1673,9 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.kJXI1z3_FtxH2idolQUx {
   margin: auto;
-  max-width: 800px;
+  max-width: 600px;
   padding: 25px;
-  border: 1px solid black;
-}`, "",{"version":3,"sources":["webpack://./src/components/Container/Container.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,gBAAA;EACA,aAAA;EACA,uBAAA;AACJ","sourcesContent":[".container {\n    margin: auto;\n    max-width: 800px;\n    padding: 25px;    \n    border: 1px solid black\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Container/Container.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,gBAAA;EACA,aAAA;AACJ","sourcesContent":[".container {\n    margin: auto;\n    max-width: 600px;\n    padding: 25px;        \n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"container": `kJXI1z3_FtxH2idolQUx`
@@ -1806,13 +1982,18 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `.jNadFe4u19lDdoI3ovzt {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: auto;
   padding: 25px;
-}`, "",{"version":3,"sources":["webpack://./src/components/Nav/Nav.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;AACJ","sourcesContent":[".nav {\n    display: flex;\n    justify-content: space-between;  \n    align-items: center;\n    margin: auto;\n    padding: 25px;\n}"],"sourceRoot":""}]);
+}
+
+.kHEUEJ2V1HD8a2ft90d9 {
+  width: 125px;
+}`, "",{"version":3,"sources":["webpack://./src/components/Nav/Nav.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;EACA,uBAAA;EACA,YAAA;EACA,aAAA;AACJ;;AAEA;EACI,YAAA;AACJ","sourcesContent":[".nav {\n    display: flex;\n    justify-content: space-between;  \n    align-items: flex-start;\n    margin: auto;\n    padding: 25px;\n}\n\n.nav__logo {\n    width: 125px;\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"nav": `jNadFe4u19lDdoI3ovzt`
+	"nav": `jNadFe4u19lDdoI3ovzt`,
+	"nav__logo": `kHEUEJ2V1HD8a2ft90d9`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2049,20 +2230,72 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rethink+Sans:wght@400;800&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `body * {
-  font-family: "Inter", sans-serif;
-}
-
-body {
+___CSS_LOADER_EXPORT___.push([module.id, `body {
   margin: 0;
   height: 100vh;
   overflow-y: visible;
-}`, "",{"version":3,"sources":["webpack://./src/router/AppRouter.module.scss"],"names":[],"mappings":"AAEA;EACI,gCAAA;AAAJ;;AAGA;EACI,SAAA;EACA,aAAA;EACA,mBAAA;AAAJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rethink+Sans:wght@400;800&display=swap');\n\nbody * {\n    font-family: \"Inter\", sans-serif;\n}\n\nbody {\n    margin: 0;\n    height: 100vh;\n    overflow-y: visible;\n}\n"],"sourceRoot":""}]);
+}
+
+body * {
+  font-family: "Roboto";
+}`, "",{"version":3,"sources":["webpack://./src/router/AppRouter.module.scss"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,aAAA;EACA,mBAAA;AACJ;;AAGA;EACI,qBAAA;AAAJ","sourcesContent":["body {\n    margin: 0;\n    height: 100vh;\n    overflow-y: visible;\n    \n}\n\nbody * {\n    font-family: 'Roboto';\n}\n\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./src/components/ClippingList/ClippingList.module.scss":
+/*!**************************************************************!*\
+  !*** ./src/components/ClippingList/ClippingList.module.scss ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!../../../node_modules/sass-loader/dist/cjs.js!../../../node_modules/postcss-loader/dist/cjs.js!./ClippingList.module.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/components/ClippingList/ClippingList.module.scss");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_2_use_1_node_modules_sass_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ClippingList_module_scss__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -2872,6 +3105,18 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -2960,7 +3205,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_sour-354ecd"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_mui_icons-material_AddShoppingCart_js-node_modules_mui_material_Button_B-6a8f79"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -1,18 +1,20 @@
 import styles from './Nav.module.scss'
 import { Link } from 'react-router-dom'
 import NavItem from '../NavItem/NavItem'
+import Button from '@mui/material/Button'
+import UserLogOut from '../UserLogOut/UserLogOut'
 
-export default function Nav({user}) {
+export default function Nav({user, setUser}) {
     return (
       <div className={styles.nav}>
         <NavItem>
-          <Link to='/'>Home</Link>
-          <Link to='/cart'>Cart</Link>
-          <Link to='/clippings/add'>Post clipping</Link>
+          <Link to='/'><img src="/img/logo_new.svg" className={styles.nav__logo} /></Link>                    
         </NavItem>
         <NavItem>
-          <Link to='/login'>Login</Link>
-          <Link to='/sign-up'>Signup</Link>
+          <UserLogOut user={user} setUser={setUser} />
+          <Button component={Link} to="/clippings/add" variant="contained">Post some clippings</Button>          
+          <Button component={Link} to="/login" variant="outlined">Login</Button>
+          <Button component={Link} to="/sign-up" variant="contained">Sign up</Button>          
         </NavItem>        
       </div>
     )

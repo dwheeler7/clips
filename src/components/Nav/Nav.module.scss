@@ -1,7 +1,11 @@
 .nav {
     display: flex;
     justify-content: space-between;  
-    align-items: center;
+    align-items: flex-start;
     margin: auto;
     padding: 25px;
+}
+
+.nav__logo {
+    width: 125px;
 }

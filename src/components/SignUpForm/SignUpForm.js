@@ -15,17 +15,10 @@ export default class SignUpForm extends Component {
     }
 
 handleChange = (evt) => {
-    if (evt.target.type === 'checkbox') {        
-        this.setState({
-            [evt.target.name]: evt.target.checked,
-            error: ''
-        })
-    } else {        
-        this.setState({
-            [evt.target.name]: evt.target.value,
-            error: ''
-        })
-    }
+    this.setState({
+        [evt.target.name]: evt.target.value,
+        error: ''
+    })  
 }
 
 handleSubmit = async (evt) => {
@@ -69,12 +62,7 @@ render() {
           value={this.state.email}
           onChange={this.handleChange}
           required={true}
-        />
-        <Input
-          type="checkbox"
-          name="isClipper"                    
-          onChange={this.handleChange}          
-        />        
+        />      
         <Input
           type="password"
           name="password"
