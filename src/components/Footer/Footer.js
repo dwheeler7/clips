@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import styles from './Footer.module.scss'
 
 const Footer = ({ cart }) => {
   const [showCart, setShowCart] = useState()
@@ -9,7 +10,7 @@ const Footer = ({ cart }) => {
   }, [cart])
 
   return (
-    <footer>      
+    <footer className={styles.footer}>      
       {showCart ? <Link to="/cart">Cart</Link> : ''}
     </footer>
   )

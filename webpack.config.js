@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
@@ -12,9 +13,9 @@ module.exports = env => {
 		},
 		output: {
 			path: path.resolve(__dirname, 'public/js/dist'),
-			publicPath: '/js/dist',
 			filename: '[name].[contenthash].js', // '[name].[contenthash].js' put this if you want to get hashed files to cache bust
-			sourceMapFilename: "[name].[contenthash].js.map"
+			sourceMapFilename: process.env.NODE_ENV === 'dev'? '[name].js.map': "[name].[contenthash].js.map",
+			publicPath: '/js/dist'
 		},
 		devtool:"source-map",
 		module: {
@@ -51,6 +52,9 @@ module.exports = env => {
 			]
 		},
 		plugins: [
+			new MiniCssExtractPlugin({
+				filename: 'style.[contenthash].css' // 'style.[contenthash].css' put this if you want to get hashed files to cache bust
+			}),
 			new HtmlWebpackPlugin({
 				inject: true,
 				hash: true,

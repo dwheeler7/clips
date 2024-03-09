@@ -1,5 +1,7 @@
 import { Component } from "react"
 import { addClipping } from '../../utilities/clippings-service'
+import Form from '../../components/Form/Form'
+import Input from '../../components/Input/Input'
 
 export default class NewClippingForm extends Component {
     state = {
@@ -30,20 +32,40 @@ handleSubmit = async (evt) => {
 
 render() {
   return (
-    <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <label>Plant</label>
-          <input type="text" name="plant" value={this.state.plant} onChange={this.handleChange} required />
-          <label>Number of clippings</label>
-          <input type="number" name="clippingsNum" min="0" max="50" value={this.state.clippingsNum} onChange={this.handleChange} required />
-          <label>Description</label>
-          <input type="text" name="description" value={this.state.description} onChange={this.handleChange} required />              
-          <button type="submit">Add clipping</button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{this.state.error}</p>
-    </div>
+    <>
+    <Form onSubmit={this.handleSubmit}>
+        <Input
+          type="text"
+          name="plant"
+          placeholder="What type of plant?"
+          value={this.state.plant}
+          onChange={this.handleChange}
+          required={true}
+        />
+         <Input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={this.state.description}
+          onChange={this.handleChange}
+          required={false}
+        />
+         <Input
+          type="number"
+          name="clippingsNum"
+          placeholder="How many clippings?"
+          value={this.state.clippingsNum}
+          onChange={this.handleChange}
+          required={true}
+        />
+        <Input
+          type="submit"
+          name="submit"          
+          value="Post clippings"
+        />
+      </Form>
+      
+      </>
   )
 }
 }

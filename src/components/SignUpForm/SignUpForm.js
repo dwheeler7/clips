@@ -1,5 +1,7 @@
 import { Component } from "react"
 import { signUp } from '../../utilities/users-service'
+import Form from '../../components/Form/Form'
+import Input from '../../components/Input/Input'
 
 export default class SignUpForm extends Component {
     state = {
@@ -42,27 +44,62 @@ handleSubmit = async (evt) => {
 render() {
   const disable = this.state.password !== this.state.confirm
   return (
-    <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <label>First name</label>
-          <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange} required />
-          <label>Last name</label>
-          <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange} required />
-          <label>Email</label>
-          <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-          <input type="checkbox" id="isClipper" name="isClipper" onChange={this.handleChange}/>
-          <label htmlFor="isClipper">I plan to post plant clippings</label>
-          <label>Password</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-          <label>Confirm</label>
-          <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-          
-          <button type="submit" disabled={disable}>Sign up</button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{this.state.error}</p>
-    </div>
+    <>
+    <Form onSubmit={this.handleSubmit}>
+      <Input
+          type="text"
+          name="firstName"
+          placeholder="First name"
+          value={this.state.firstName}
+          onChange={this.handleChange}
+          required={true}
+        />
+        <Input
+          type="text"
+          name="lastName"
+          placeholder="Last name"
+          value={this.state.lastName}
+          onChange={this.handleChange}
+          required={true}
+        />        
+        <Input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          value={this.state.email}
+          onChange={this.handleChange}
+          required={true}
+        />
+        <Input
+          type="checkbox"
+          name="isClipper"                    
+          onChange={this.handleChange}          
+        />        
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          required={true}
+        />
+        <Input
+          type="password"
+          name="confirm"
+          placeholder="Confirm password"
+          value={this.state.confirm}
+          onChange={this.handleChange}
+          required={true}
+        />
+        <Input
+          type="submit"
+          name="submit"
+          value="Sign up"          
+          disabled={disable}          
+        />
+    </Form>    
+    <p className="error-message">&nbsp;{this.state.error}</p>
+    </>
   )
 }
 }
