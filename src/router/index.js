@@ -6,7 +6,6 @@ import { getUser } from '../utilities/users-service'
 import { getClippings } from '../utilities/clippings-service'
 import Footer from '../components/Footer/Footer'
 import Nav from '../components/Nav/Nav'
-
 const AppRouter = () => {
     const [user, setUser] = useState(() => getUser())
     const [clippings, setClippings] = useState([])
@@ -37,6 +36,7 @@ const AppRouter = () => {
                     <Route path="*" element={<Navigate to={user ? "/" : "/login"} replace />} />
                 </Routes>
                 <Footer cart={cart} />
+                
             </Router>
         </>
     )
